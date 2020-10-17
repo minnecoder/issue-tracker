@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently \"cd api && node server.js\" \"cd web && npm start\" ",
+    "web": "\"cd web && npm start\"",
+    "api": "\"cd api && node server.js\""
   },
   "repository": {
     "type": "git",
