@@ -4,7 +4,7 @@ const Project = require('./Project.js');
 const User = require('./User');
 
 const Ticket = db.define('ticket', {
-  project_id: {
+  projectId: {
     type: Sequelize.INTEGER,
     references: {
       model: Project,
@@ -18,7 +18,7 @@ const Ticket = db.define('ticket', {
   description: {
     type: Sequelize.TEXT,
   },
-  assigned_dev: {
+  assignedDev: {
     type: Sequelize.INTEGER,
     references: {
       model: User,
@@ -34,13 +34,13 @@ const Ticket = db.define('ticket', {
       deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
     },
   },
-  ticket_priority: {
+  ticketPriority: {
     type: Sequelize.ENUM('lowest', 'low', 'medium', 'high', 'highest'),
   },
-  ticket_status: {
+  ticketStatus: {
     type: Sequelize.ENUM('open', 'resolved', 'closed', 'reopened', 'in progress'),
   },
-  ticket_type: {
+  ticketType: {
     type: Sequelize.ENUM('bug', 'new feature', 'improvement', 'task', 'testing'),
   },
   createdAt: {

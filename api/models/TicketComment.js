@@ -4,7 +4,7 @@ const Ticket = require('./Ticket');
 const User = require('./User');
 
 const TicketComment = db.define('ticket_comment', {
-  ticket_id: {
+  ticketId: {
     type: Sequelize.INTEGER,
     references: {
       model: Ticket,

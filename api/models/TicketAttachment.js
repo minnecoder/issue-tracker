@@ -4,7 +4,7 @@ const Ticket = require('./Ticket');
 const User = require('./User');
 
 const TicketAttachment = db.define('ticket_attachment', {
-  ticket_id: {
+  ticketId: {
     type: Sequelize.INTEGER,
     references: {
       model: Ticket,
@@ -12,7 +12,7 @@ const TicketAttachment = db.define('ticket_attachment', {
       deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
     },
   },
-  file_name: {
+  fileName: {
     type: Sequelize.STRING,
   },
   uploader: {

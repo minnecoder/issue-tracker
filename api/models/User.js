@@ -2,11 +2,17 @@ const Sequelize = require('sequelize');
 const db = require('../config/postgres-db');
 
 const User = db.define('user', {
-  first_name: {
+  firstName: {
     type: Sequelize.STRING,
   },
-  last_name: {
+  lastName: {
     type: Sequelize.STRING,
+  },
+  fullName: {
+    type: Sequelize.VIRTUAL,
+    get() {
+      return `${this.getDataValue('firstName')} ${this.getDataValue('lastName')}`;
+    },
   },
   email: {
     type: Sequelize.STRING,

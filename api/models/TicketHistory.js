@@ -4,7 +4,7 @@ const Ticket = require('./Ticket');
 
 const TicketHistory = db.define('ticket_history',
   {
-    ticket_id: {
+    ticketId: {
       type: Sequelize.INTEGER,
       references: {
         model: Ticket,
@@ -12,13 +12,13 @@ const TicketHistory = db.define('ticket_history',
         deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
       },
     },
-    property_changed: {
+    propertyChanged: {
       type: Sequelize.STRING,
     },
-    old_value: {
+    oldValue: {
       type: Sequelize.STRING,
     },
-    new_value: {
+    newValue: {
       type: Sequelize.STRING,
     },
     createdAt: {

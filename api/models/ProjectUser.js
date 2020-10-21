@@ -4,7 +4,7 @@ const Project = require('./Project');
 const User = require('./User');
 
 const ProjectUser = db.define('project_users', {
-  project_id: {
+  projectId: {
     type: Sequelize.INTEGER,
     references: {
       model: Project,
@@ -12,7 +12,7 @@ const ProjectUser = db.define('project_users', {
       deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
     },
   },
-  user_id: {
+  userId: {
     type: Sequelize.INTEGER,
     references: {
       model: User,
