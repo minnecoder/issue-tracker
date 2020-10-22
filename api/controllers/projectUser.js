@@ -1,4 +1,6 @@
+const Project = require('../models/Project');
 const ProjectUser = require('../models/ProjectUser');
+const User = require('../models/User');
 
 // @desc Get all projectUsers
 // @route GET /projectUser
@@ -48,6 +50,32 @@ exports.getSingleProjectUser = async (req, res) => {
 exports.addProjectUser = async (req, res) => {
   try {
     const projectUser = await ProjectUser.create(req.body);
+
+    // Check if project id is valid
+    const projectid = await Project.findOne({
+      where: {
+        id: req.body.projectId,
+      },
+    });
+
+    if (!projectid) {
+      return res.status(404).json({
+        error: 'Project ID was not found',
+      });
+    }
+
+    // Check if user id is valid
+    const userid = await User.findOne({
+      where: {
+        id: req.body.userId,
+      },
+    });
+
+    if (!userid) {
+      return res.status(404).json({
+        error: 'User ID was not found',
+      });
+    }
 
     return res.status(200).json({
       success: true,
