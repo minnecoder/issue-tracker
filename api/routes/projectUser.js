@@ -12,3 +12,5 @@ const router = express.Router();
 
 router.route('/').get(getProjectUsers).post(addProjectUser);
 router.route('/:id').get(getSingleProjectUser).put(updateProjectUser).delete(deleteProjectUser);
+
+module.exports = router;

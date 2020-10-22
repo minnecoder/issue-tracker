@@ -11,3 +11,5 @@ const router = express.Router();
 router.route('/add').post(addUser);
 router.route('/login').post(loginUser);
 router.route('/:id').get(getUser);
+
+module.exports = router;
