@@ -3,7 +3,7 @@ const db = require('../config/postgres-db');
 const Project = require('./Project');
 const User = require('./User');
 
-const ProjectUser = db.define('project_users', {
+const ProjectUser = db.define('projectUser', {
   projectId: {
     type: Sequelize.INTEGER,
     references: {

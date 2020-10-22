@@ -3,7 +3,7 @@ const db = require('../config/postgres-db');
 const Ticket = require('./Ticket');
 const User = require('./User');
 
-const TicketComment = db.define('ticket_comment', {
+const TicketComment = db.define('ticketComment', {
   ticketId: {
     type: Sequelize.INTEGER,
     references: {
