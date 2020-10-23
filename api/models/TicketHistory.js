@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const db = require('../config/postgres-db');
 const Ticket = require('./Ticket');
 
-const TicketHistory = db.define('ticketHistory',
+const TicketHistory = db.define('ticketHistorys',
   {
     ticketId: {
       type: Sequelize.INTEGER,

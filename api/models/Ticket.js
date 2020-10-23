@@ -3,7 +3,7 @@ const db = require('../config/postgres-db');
 const Project = require('./Project.js');
 const User = require('./User');
 
-const Ticket = db.define('ticket', {
+const Ticket = db.define('tickets', {
   projectId: {
     type: Sequelize.INTEGER,
     references: {
@@ -45,16 +45,17 @@ const Ticket = db.define('ticket', {
   },
   createdAt: {
     type: Sequelize.DATE,
+    defaultValue: Date.now(),
   },
   updatedAt: {
     type: Sequelize.DATE,
-    defaultValue: Date.now(),
+    
   },
 });
 
-Project.hasMany(Ticket);
-Ticket.belongsTo(Project);
-User.hasMany(Ticket);
-Ticket.belongsTo(User);
+// Project.hasMany(Ticket);
+// Ticket.belongsTo(Project);
+// User.hasMany(Ticket);
+// Ticket.belongsTo(User);
 
 module.exports = Ticket;

@@ -3,7 +3,7 @@ const db = require('../config/postgres-db');
 const Ticket = require('./Ticket');
 const User = require('./User');
 
-const TicketAttachment = db.define('ticketAttachment', {
+const TicketAttachment = db.define('ticketAttachments', {
   ticketId: {
     type: Sequelize.INTEGER,
     references: {
@@ -35,9 +35,9 @@ const TicketAttachment = db.define('ticketAttachment', {
   },
 });
 
-Ticket.hasMany(TicketAttachment);
-TicketAttachment.belongsTo(Ticket);
-User.hasMany(TicketAttachment);
-TicketAttachment.belongsTo(User);
+// Ticket.hasMany(TicketAttachment);
+// TicketAttachment.belongsTo(Ticket);
+// User.hasMany(TicketAttachment);
+// TicketAttachment.belongsTo(User);
 
 module.exports = TicketAttachment;
