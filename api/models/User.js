@@ -1,19 +1,19 @@
 const Sequelize = require('sequelize');
 const db = require('../config/postgres-db');
 
-const User = db.define('user', {
+const User = db.define('users', {
   firstName: {
     type: Sequelize.STRING,
   },
   lastName: {
     type: Sequelize.STRING,
   },
-  // fullName: {
-  //   type: Sequelize.VIRTUAL,
-  //   get() {
-  //     return `${this.getDataValue('firstName')} ${this.getDataValue('lastName')}`;
-  //   },
-  // },
+  fullName: {
+    type: Sequelize.VIRTUAL,
+    get() {
+      return `${this.getDataValue('firstName')} ${this.getDataValue('lastName')}`;
+    },
+  },
   email: {
     type: Sequelize.STRING,
   },
