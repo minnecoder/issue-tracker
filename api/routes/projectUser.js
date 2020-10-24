@@ -1,5 +1,5 @@
 const express = require('express');
-
+const { verifyProjectId, verifyUserId, verifyProjectUserId } = require('../middleware/verifyIDs');
 const {
   getProjectUsers,
   getSingleProjectUser,
@@ -10,7 +10,29 @@ const {
 
 const router = express.Router();
 
-router.route('/').get(getProjectUsers).post(addProjectUser);
-router.route('/:id').get(getSingleProjectUser).put(updateProjectUser).delete(deleteProjectUser);
+router
+  .route('/')
+  .get(getProjectUsers)
+  .post(
+    verifyProjectId,
+    verifyUserId,
+    addProjectUser,
+  );
+
+router
+  .route('/:id')
+  .get(getSingleProjectUser)
+  .put(
+    verifyProjectId,
+    verifyUserId,
+    verifyProjectUserId,
+    updateProjectUser,
+  )
+  .delete(
+    verifyProjectId,
+    verifyUserId,
+    verifyProjectUserId,
+    deleteProjectUser,
+  );
 
 module.exports = router;

@@ -66,19 +66,6 @@ exports.addProject = async (req, res) => {
 // @access Verfied User
 exports.updateProject = async (req, res) => {
   try {
-    const project = await Project.findOne({
-      where: {
-        id: req.params.id,
-      },
-    });
-
-    if (!project) {
-      return res.status(404).json({
-        success: false,
-        error: 'Project not found',
-      });
-    }
-
     await Project.update(req.body, {
       where: {
         id: req.params.id,
@@ -86,7 +73,6 @@ exports.updateProject = async (req, res) => {
     });
     return res.status(200).json({
       success: true,
-      data: project,
     });
   } catch (error) {
     console.error(error);
@@ -99,17 +85,6 @@ exports.updateProject = async (req, res) => {
 // @access Verified User
 exports.deleteProject = async (req, res) => {
   try {
-    const project = await Project.findOne({
-      where: {
-        id: req.params.id,
-      },
-    });
-    if (!project) {
-      return res.status(400).json({
-        success: false,
-        error: 'Project not found',
-      });
-    }
     await Project.destory({
       where: {
         id: req.params.id,

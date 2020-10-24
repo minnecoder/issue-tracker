@@ -66,19 +66,6 @@ exports.addTicket = async (req, res) => {
 // @access Verfied User
 exports.updateTicket = async (req, res) => {
   try {
-    const ticket = await Ticket.findOne({
-      where: {
-        id: req.params.id,
-      },
-    });
-
-    if (!ticket) {
-      return res.status(404).json({
-        success: false,
-        error: 'Ticket not found',
-      });
-    }
-
     await Ticket.update(req.body, {
       where: {
         id: req.params.id,
@@ -86,7 +73,6 @@ exports.updateTicket = async (req, res) => {
     });
     return res.status(200).json({
       success: true,
-      data: ticket,
     });
   } catch (error) {
     console.error(error);
@@ -99,17 +85,6 @@ exports.updateTicket = async (req, res) => {
 // @access Verified User
 exports.deleteTicket = async (req, res) => {
   try {
-    const ticket = await Ticket.findOne({
-      where: {
-        id: req.params.id,
-      },
-    });
-    if (!ticket) {
-      return res.status(400).json({
-        success: false,
-        error: 'Ticket not found',
-      });
-    }
     await Ticket.destory({
       where: {
         id: req.params.id,
