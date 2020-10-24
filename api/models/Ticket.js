@@ -49,7 +49,6 @@ const Ticket = db.define('tickets', {
   },
   updatedAt: {
     type: Sequelize.DATE,
-    
   },
 });
 
