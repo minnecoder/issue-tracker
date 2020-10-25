@@ -66,19 +66,6 @@ exports.addTicketAttachment = async (req, res) => {
 // @access Verfied User
 exports.updateTicketAttachment = async (req, res) => {
   try {
-    const ticketAttachment = await TicketAttachment.findOne({
-      where: {
-        id: req.params.id,
-      },
-    });
-
-    if (!ticketAttachment) {
-      return res.status(404).json({
-        success: false,
-        error: 'Ticket attachment not found',
-      });
-    }
-
     await TicketAttachment.update(req.body, {
       where: {
         id: req.params.id,
@@ -86,7 +73,6 @@ exports.updateTicketAttachment = async (req, res) => {
     });
     return res.status(200).json({
       success: true,
-      data: ticketAttachment,
     });
   } catch (error) {
     console.error(error);
@@ -99,17 +85,6 @@ exports.updateTicketAttachment = async (req, res) => {
 // @access Verified User
 exports.deleteTicketAttachment = async (req, res) => {
   try {
-    const ticketAttachment = await TicketAttachment.findOne({
-      where: {
-        id: req.params.id,
-      },
-    });
-    if (!ticketAttachment) {
-      return res.status(400).json({
-        success: false,
-        error: 'Ticket attachment not found',
-      });
-    }
     await TicketAttachment.destory({
       where: {
         id: req.params.id,

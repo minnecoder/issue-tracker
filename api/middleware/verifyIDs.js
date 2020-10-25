@@ -2,6 +2,9 @@ const Project = require('../models/Project');
 const ProjectUser = require('../models/ProjectUser');
 const User = require('../models/User');
 const Ticket = require('../models/Ticket');
+const TicketAttachment = require('../models/TicketAttachment');
+const TicketComment = require('../models/TicketComment');
+const TicketHistory = require('../models/TicketHistory');
 
 exports.verifyAssignedDev = async (req, res, next) => {
   const assigneddev = await User.findOne({
@@ -93,6 +96,54 @@ exports.verifyUserId = async (req, res, next) => {
     return res.status(404).json({
       success: false,
       error: 'User not found',
+    });
+  }
+  return next();
+};
+
+exports.verifyTicketAttachment = async (req, res, next) => {
+  const ticketAttachment = await TicketAttachment.findOne({
+    where: {
+      id: req.params.id,
+    },
+  });
+
+  if (!ticketAttachment) {
+    return res.status(404).json({
+      success: false,
+      error: 'Ticket attachment not found',
+    });
+  }
+  return next();
+};
+
+exports.verifyTicketComment = async (req, res, next) => {
+  const ticketComment = await TicketComment.findOne({
+    where: {
+      id: req.params.id,
+    },
+  });
+
+  if (!ticketComment) {
+    return res.status(404).json({
+      success: false,
+      error: 'Ticket comment not found',
+    });
+  }
+  return next();
+};
+
+exports.verifyTicketHistory = async (req, res, next) => {
+  const ticketHistory = await TicketHistory.findOne({
+    where: {
+      id: req.params.id,
+    },
+  });
+
+  if (!ticketHistory) {
+    return res.status(404).json({
+      success: false,
+      error: 'Ticket history not found',
     });
   }
   return next();

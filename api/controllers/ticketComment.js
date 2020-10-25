@@ -66,19 +66,6 @@ exports.addTicketComment = async (req, res) => {
 // @access Verfied User
 exports.updateTicketComment = async (req, res) => {
   try {
-    const ticketComment = await TicketComment.findOne({
-      where: {
-        id: req.params.id,
-      },
-    });
-
-    if (!ticketComment) {
-      return res.status(404).json({
-        success: false,
-        error: 'Ticket comment not found',
-      });
-    }
-
     await TicketComment.update(req.body, {
       where: {
         id: req.params.id,
@@ -99,17 +86,6 @@ exports.updateTicketComment = async (req, res) => {
 // @access Verified User
 exports.deleteTicketComment = async (req, res) => {
   try {
-    const ticketComment = await TicketComment.findOne({
-      where: {
-        id: req.params.id,
-      },
-    });
-    if (!ticketComment) {
-      return res.status(400).json({
-        success: false,
-        error: 'Ticket comment not found',
-      });
-    }
     await TicketComment.destory({
       where: {
         id: req.params.id,

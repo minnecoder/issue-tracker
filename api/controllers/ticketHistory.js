@@ -66,19 +66,6 @@ exports.addTicketHistory = async (req, res) => {
 // @access Verfied User
 exports.updateTicketHistory = async (req, res) => {
   try {
-    const ticketHistory = await TicketHistory.findOne({
-      where: {
-        id: req.params.id,
-      },
-    });
-
-    if (!ticketHistory) {
-      return res.status(404).json({
-        success: false,
-        error: 'Ticket history not found',
-      });
-    }
-
     await TicketHistory.update(req.body, {
       where: {
         id: req.params.id,
@@ -86,7 +73,6 @@ exports.updateTicketHistory = async (req, res) => {
     });
     return res.status(200).json({
       success: true,
-      data: ticketHistory,
     });
   } catch (error) {
     console.error(error);
@@ -99,17 +85,6 @@ exports.updateTicketHistory = async (req, res) => {
 // @access Verified User
 exports.deleteTicketHistory = async (req, res) => {
   try {
-    const ticketHistory = await TicketHistory.findOne({
-      where: {
-        id: req.params.id,
-      },
-    });
-    if (!ticketHistory) {
-      return res.status(400).json({
-        success: false,
-        error: 'Ticket history not found',
-      });
-    }
     await TicketHistory.destory({
       where: {
         id: req.params.id,

@@ -1,5 +1,5 @@
 const express = require('express');
-
+const { verifyTicketComment } = require('../middleware/verifyIDs');
 const {
   getTicketComments,
   getSingleTicketComment,
@@ -10,7 +10,21 @@ const {
 
 const router = express.Router();
 
-router.route('/').get(getTicketComments).post(addTicketComment);
-router.route('/:id').get(getSingleTicketComment).put(updateTicketComment).delete(deleteTicketComment);
+router
+  .route('/')
+  .get(getTicketComments)
+  .post(addTicketComment);
+
+router
+  .route('/:id')
+  .get(getSingleTicketComment)
+  .put(
+    verifyTicketComment,
+    updateTicketComment,
+  )
+  .delete(
+    verifyTicketComment,
+    deleteTicketComment,
+  );
 
 module.exports = router;
