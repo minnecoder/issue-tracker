@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaSearch } from 'react-icons/fa';
 
-export default function Topbar() {
+export default function Header() {
   return (
     <Main>
       <Nav>
@@ -26,12 +26,13 @@ export default function Topbar() {
 const Main = styled.div`
 width: 100%;
 height: 4rem;
-
+${'' /* background: blue; */}
 `;
 
 const Nav = styled.div`
 display: flex;
 justify-content: space-between;
+padding-top: 1.5rem;
 `;
 
 const Left = styled.div`
@@ -49,7 +50,6 @@ align-items: center;
 margin-right: 2rem;
 
 li {
-    list-style-type: none;
     padding: 0 1rem;
 }
 `;

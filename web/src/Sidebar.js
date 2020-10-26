@@ -20,9 +20,13 @@ position: fixed;
 top: 4rem;
 height: calc(100% - 4rem);
 width: 200px;
+${'' /* background: red; */}
+
+ul {
+    margin-left: 3rem;
+}
 
 li {
-list-style-type: none;
 padding: 1rem 0;
 }
 
