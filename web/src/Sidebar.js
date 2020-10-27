@@ -1,15 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function Sidebar() {
   return (
     <Main>
       <ul>
-        <li>Dashboard</li>
-        <li>Manage Roles</li>
-        <li>Manage Users</li>
-        <li>Projects</li>
-        <li>Tickets</li>
+        <li><SidebarLink to="/dashboard">Dashboard</SidebarLink></li>
+        <li><SidebarLink to="/manageroles">Manage Roles</SidebarLink></li>
+        <li><SidebarLink to="/manageusers">Manage Users</SidebarLink></li>
+        <li><SidebarLink to="/projects">Projects</SidebarLink></li>
+        <li><SidebarLink to="/tickets">Tickets</SidebarLink></li>
       </ul>
     </Main>
   );
@@ -20,7 +21,6 @@ position: fixed;
 top: 4rem;
 height: calc(100% - 4rem);
 width: 200px;
-${'' /* background: red; */}
 
 ul {
     margin-left: 3rem;
@@ -30,4 +30,8 @@ li {
 padding: 1rem 0;
 }
 
+`;
+
+const SidebarLink = styled(Link)`
+color: black;
 `;
