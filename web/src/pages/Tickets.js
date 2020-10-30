@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import TicketTable from '../components/TicketTable';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
 
@@ -9,7 +10,7 @@ export default function Tickets() {
       <Header />
       <Sidebar />
       <Main>
-        <h1>Tickets</h1>
+        <TicketTable />
       </Main>
     </div>
   );
