@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 // import TicketTable from '../components/TicketTable';
-import Header from '../Header';
-import Sidebar from '../Sidebar';
+// import { Link } from 'react-router-dom';
+import Header from '../components/Header';
+// import { FaSearch } from 'react-icons/fa';
+import Sidebar from '../components/Sidebar';
 import TicketList from '../components/TicketList';
 import TicketDetails from '../components/TicketDetails';
 import TicketInfo from '../components/TicketInfo';
@@ -10,58 +12,53 @@ import TicketInfo from '../components/TicketInfo';
 export default function Tickets() {
   return (
     <div>
-      <Header />
-      <Sidebar />
       <Main>
-        <TicketArea>
-          <ListPanel>
+        <Header style={{ 'grid-area': 'header' }} />
+        <Sidebar style={{ 'grid-area': 'sidebar' }} />
+        <ListPanel>
 
-            <TableTitle>
-              <h3>Tickets</h3>
-              <button type="submit">Create A Ticket</button>
-            </TableTitle>
-            <TicketList />
-          </ListPanel>
-          <DetailPanel>
-            <TicketInfo />
-            <TicketDetails />
-          </DetailPanel>
-        </TicketArea>
-
+          <TableTitle>
+            <h3>Tickets</h3>
+            <button type="submit">Create A Ticket</button>
+          </TableTitle>
+          <TicketList />
+        </ListPanel>
+        <DetailPanel>
+          <TicketInfo />
+          <TicketDetails />
+        </DetailPanel>
       </Main>
     </div>
   );
 }
 
 const Main = styled.div`
-position: fixed;
-right: 0;
-height: calc(100vh - 4rem);
-width: calc(100% - 200px);
-display: flex;
+display: grid;
+grid-template-columns: 200px 1fr 1fr;
+grid-template-rows: 65px 1fr;
+grid-template-areas:
+"header header header"
+"sidebar list detail";
+grid-gap: 0;
 background: #E0E5E9;
-`;
 
-const TicketArea = styled.div`
-display: flex;
-margin: 1rem;
-border: solid 1 px black;
-border-collapse: separate;
-border-radius: 5px;
-background: white;
 `;
 
 const ListPanel = styled.div`
-flex: 1;
-height: 100vh;
+grid-area: list;
+height: calc(100vh - 4.25rem);
+background: white;
+margin: .25rem .25rem 0 .25rem;
 `;
 
 const DetailPanel = styled.div`
-flex: 1;
-height: 100vh;
+grid-area: detail;
+height: calc(100vh - 4.25rem);
 border-left: solid 1px #ccc;
+margin: .25rem .25rem 0 0;
 display: flex;
 flex-direction: column;
+background: white;
 `;
 
 const TableTitle = styled.div`
