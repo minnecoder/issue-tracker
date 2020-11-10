@@ -9,7 +9,7 @@ export default function Header() {
         <Left>
           <h3>Issue Tracker</h3>
           <SearchBar>
-            <FaSearch />
+            <FaSearch style={{ paddingRight: '.25rem' }} />
             <input type="search" name="search" id="search" placeholder="Search..." />
           </SearchBar>
         </Left>
@@ -24,11 +24,14 @@ export default function Header() {
 }
 
 const Main = styled.div`
-width: 100%;
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
 height: 4rem;
-${'' /* background: blue; */}
+border-bottom: solid 1px #ddd;
+background: white;
 `;
-
 const Nav = styled.div`
 display: flex;
 justify-content: space-between;
@@ -40,7 +43,7 @@ display: flex;
 align-items: center;
 
 h3{
-    padding: 0 2rem; 
+  padding: 0 2rem;
 }
 `;
 
@@ -50,7 +53,7 @@ align-items: center;
 margin-right: 2rem;
 
 li {
-    padding: 0 1rem;
+  padding: 0 1rem;
 }
 `;
 
@@ -60,14 +63,14 @@ display: inline-flex;
 background: white;
 overflow: hidden;
 input {
-    ${'' /* padding-left: 2rem; */}
-   border-top-style: hidden;
-   border-left-style: hidden;
-   border-right-style: hidden;
-   border-bottom-style: hidden;
-   width: 15rem;
+  ${'' /* padding-left: 2rem; */}
+  border-top-style: hidden;
+  border-left-style: hidden;
+  border-right-style: hidden;
+  border-bottom-style: hidden;
+  width: 15rem;
 }
-input:focus {
-    outline: none;
+input: focus {
+  outline: none;
 }
 `;

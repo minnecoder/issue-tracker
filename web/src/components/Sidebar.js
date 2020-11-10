@@ -21,6 +21,8 @@ position: fixed;
 top: 4rem;
 height: calc(100% - 4rem);
 width: 200px;
+background: white;
+border-right: solid 1px #ddd;
 
 ul {
     margin-left: 3rem;
