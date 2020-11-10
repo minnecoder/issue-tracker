@@ -24,14 +24,12 @@ export default function Header() {
 }
 
 const Main = styled.div`
-position: fixed;
-top: 0;
-left: 0;
-width: 100vw;
+grid-area: header;
 height: 4rem;
 border-bottom: solid 1px #ddd;
 background: white;
 `;
+
 const Nav = styled.div`
 display: flex;
 justify-content: space-between;
@@ -63,7 +61,6 @@ display: inline-flex;
 background: white;
 overflow: hidden;
 input {
-  ${'' /* padding-left: 2rem; */}
   border-top-style: hidden;
   border-left-style: hidden;
   border-right-style: hidden;

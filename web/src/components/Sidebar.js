@@ -17,9 +17,7 @@ export default function Sidebar() {
 }
 
 const Main = styled.div`
-position: fixed;
-top: 4rem;
-height: calc(100% - 4rem);
+grid-area: sidebar;
 width: 200px;
 background: white;
 border-right: solid 1px #ddd;
