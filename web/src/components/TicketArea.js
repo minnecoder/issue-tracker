@@ -17,6 +17,11 @@ export default function TicketArea() {
       <DetailPanel>
         <TicketInfo />
         <TicketDetails />
+        <TicketComment>
+          <textarea name="" id="" cols="30" rows="10" />
+          {/* <input type="text" name="ticketComment" id="" /> */}
+          <button type="submit">Submit</button>
+        </TicketComment>
       </DetailPanel>
     </Main>
   );
@@ -50,5 +55,29 @@ border-bottom: solid 1px #ccc;
 
 button {
   padding: .5rem;
+}
+`;
+
+const TicketComment = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 40rem;
+  margin: 0 auto ;
+
+input[type=text] {
+  
+  height: 5rem;
+  border: solid 1px black;
+}
+
+textarea {
+  border: solid 1px black;
+}
+
+button {
+margin-top: .5rem;
+padding: .5rem;
+width: 6rem;
+
 }
 `;
