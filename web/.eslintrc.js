@@ -16,6 +16,7 @@ module.exports = {
     },
     plugins: [
         'react',
+        "react-hooks"
     ],
     rules: {
         indent: ['error', 2],
