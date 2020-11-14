@@ -4,21 +4,23 @@ import TicketNotes from "./TicketNotes"
 import styled from "styled-components"
 
 export default function TicketDetail() {
-  return (
-    <Main>
-      <TicketInfo />
-      <TicketNotes />
-      <TicketComment>
-        <textarea name="" id="" cols="30" rows="10" />
-        <button type="submit">Submit</button>
-      </TicketComment>
-    </Main>
-  )
+    return (
+        <Main>
+            <TicketInfo />
+            <TicketNotes />
+            <TicketComment>
+                <textarea name="" id="" cols="30" rows="10" />
+                <button type="submit">Submit</button>
+            </TicketComment>
+        </Main>
+    )
 }
 
 
 const Main = styled.div`
 background: white;
+width: 100%;
+grid-area: ticketarea;
 
 `
 

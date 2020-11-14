@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
-import TicketArea from '../components/TicketArea';
+import TicketList from '../components/TicketList';
 
 export default function Tickets() {
   return (
@@ -10,7 +10,7 @@ export default function Tickets() {
       <Main>
         <Header />
         <Sidebar />
-        <TicketArea />
+        <TicketList />
       </Main>
     </div>
   );
