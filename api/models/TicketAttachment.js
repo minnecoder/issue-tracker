@@ -35,9 +35,9 @@ const TicketAttachment = db.define('ticketAttachments', {
   },
 });
 
-// Ticket.hasMany(TicketAttachment);
-// TicketAttachment.belongsTo(Ticket);
-// User.hasMany(TicketAttachment);
-// TicketAttachment.belongsTo(User);
+Ticket.hasMany(TicketAttachment);
+TicketAttachment.belongsTo(Ticket);
+User.hasMany(TicketAttachment);
+TicketAttachment.belongsTo(User);
 
 module.exports = TicketAttachment;

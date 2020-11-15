@@ -13,13 +13,14 @@ const {
   addTicket,
   updateTicket,
   deleteTicket,
+  getFullTicketInfo,
 } = require('../controllers/ticket');
 
 const router = express.Router();
 
 router
   .route('/')
-  .get(getTickets)
+  .get(getFullTicketInfo)
   .post(
     verifyProjectId,
     verifyAssignedDev,

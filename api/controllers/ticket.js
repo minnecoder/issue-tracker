@@ -1,4 +1,8 @@
 const Ticket = require('../models/Ticket');
+const TicketComment = require('../models/TicketComment');
+const TicketHistory = require('../models/TicketHistory');
+const TicketAttachment = require('../models/TicketAttachment');
+const User = require('../models/User');
 
 // @desc Get all tickets
 // @route GET /ticket
@@ -95,6 +99,57 @@ exports.deleteTicket = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
+    return res.status(500).json({
+      error: 'Server Error',
+    });
+  }
+};
+
+// @desc Get ticket all tickets with info, ticket comments, ticket changes, and ticket attachments
+// @route GET /ticket/full
+// @access Verified User
+exports.getFullTicketInfo = async (req, res) => {
+  try {
+    // Get all tickets
+    const tickets = await Ticket.findAll({
+      // include: TicketComment,
+      include: [
+
+        {
+          model: TicketComment,
+          attributes: ['userId', 'comment', 'createdAt'],
+          include: {
+            model: User,
+            attributes: ['fullName', 'firstName', 'lastName'],
+          },
+        },
+        {
+          model: TicketHistory,
+          attributes: ['userId', 'propertyChanged', 'oldValue', 'newValue', 'createdAt'],
+          include: {
+            model: User,
+            attributes: ['fullName', 'firstName', 'lastName'],
+          },
+        },
+        {
+          model: TicketAttachment,
+          attributes: ['userId', 'fileName', 'notes', 'uploader', 'createdAt'],
+          include: {
+            model: User,
+            attributes: ['fullName', 'firstName', 'lastName'],
+          },
+
+        },
+      ],
+    });
+    return res.status(200).json({
+      success: true,
+      data: tickets,
+    });
+    // Get all ticket comments, ticket history, and ticket attachments
+    // Put ticket and other ticket parts in the same object
+  } catch (error) {
+    console.log(error);
     return res.status(500).json({
       error: 'Server Error',
     });

@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../config/postgres-db');
 const Ticket = require('./Ticket');
+const User = require('./User');
 
 const TicketHistory = db.define('ticketHistorys',
   {
@@ -32,5 +33,7 @@ const TicketHistory = db.define('ticketHistorys',
 
 Ticket.hasMany(TicketHistory);
 TicketHistory.belongsTo(Ticket);
+User.hasMany(TicketHistory);
+TicketHistory.belongsTo(User);
 
 module.exports = TicketHistory;

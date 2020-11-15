@@ -24,9 +24,9 @@ const TicketComment = db.define('ticketComments', {
   },
 });
 
-// Ticket.hasMany(TicketComment);
-// TicketComment.belongsTo(Ticket);
-// User.hasMany(TicketComment);
-// TicketComment.belongsTo(User);
+Ticket.hasMany(TicketComment);
+TicketComment.belongsTo(Ticket);
+User.hasMany(TicketComment);
+TicketComment.belongsTo(User);
 
 module.exports = TicketComment;

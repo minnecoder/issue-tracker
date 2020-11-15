@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import TicketDetail from "./TicketDetail"
 
 export default function TicketList() {
+  const [tickets, updateTickets] = useState([])
+
+  useEffect(() => {
+    async function fetchTickets() {
+      const response = await fetch("")
+      const json = await response.json()
+      updateTickets(json.data)
+    }
+    fetchTickets()
+  }, [])
+
+
+
   const tickets = [{
     id: 1,
     project: 'Sample Project 1',
@@ -13,6 +26,22 @@ export default function TicketList() {
     ticketPriority: 'Medium',
     ticketStatus: 'Open',
     ticketType: 'Bug',
+    changes:
+      [
+        {
+          user: 'Jane Smith',
+          propertyChanged: 'Ticket Status',
+          oldValue: 'Open',
+          newValue: 'Resolved',
+          createdAt: '11/2/2020',
+        },
+        {
+          commenter: 'John Doe',
+          comment: 'This one thing would be a great idea',
+          createdAt: '4/1/2020',
+        },
+
+      ]
   },
   {
     id: 2,
@@ -24,6 +53,22 @@ export default function TicketList() {
     ticketPriority: 'Medium',
     ticketStatus: 'Open',
     ticketType: 'Bug',
+    changes:
+      [
+        {
+          user: 'Jane Smith',
+          propertyChanged: 'Ticket Status',
+          oldValue: 'Open',
+          newValue: 'Resolved',
+          createdAt: '11/2/2020',
+        },
+        {
+          commenter: 'John Doe',
+          comment: 'This one thing would be a great idea',
+          createdAt: '4/1/2020',
+        },
+
+      ]
   },
   {
     id: 3,
@@ -35,6 +80,22 @@ export default function TicketList() {
     ticketPriority: 'Medium',
     ticketStatus: 'Open',
     ticketType: 'Bug',
+    changes:
+      [
+        {
+          user: 'Jane Smith',
+          propertyChanged: 'Ticket Status',
+          oldValue: 'Open',
+          newValue: 'Resolved',
+          createdAt: '11/2/2020',
+        },
+        {
+          commenter: 'John Doe',
+          comment: 'This one thing would be a great idea',
+          createdAt: '4/1/2020',
+        },
+
+      ]
   },
   ];
   return (
@@ -61,7 +122,7 @@ export default function TicketList() {
           ))
         }
       </div>
-      <TicketDetail />
+      <TicketDetail key={ticket.id} data={ticket} />
     </Wrapper>
   );
 }
