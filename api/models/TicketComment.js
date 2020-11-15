@@ -12,14 +12,6 @@ const TicketComment = db.define('ticketComments', {
       deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
     },
   },
-  commenter: {
-    type: Sequelize.INTEGER,
-    references: {
-      model: User,
-      key: 'id',
-      deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
-    },
-  },
   comment: {
     type: Sequelize.TEXT,
   },
