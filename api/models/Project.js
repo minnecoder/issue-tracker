@@ -9,6 +9,10 @@ const ProjectSchema = new mongoose.Schema({
         type: String,
         required: [true, "Project description is required"]
     },
+    tickets: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Ticket"
+    }],
     createdOn: {
         type: Date,
         default: Date.now()

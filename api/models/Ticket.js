@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
+const Project = require("../models/Project")
 
 const TicketSchema = new mongoose.Schema({
-    // TODO connect to project
     title: {
         type: String,
         required: [true, "Ticket title is required"]

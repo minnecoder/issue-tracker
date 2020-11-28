@@ -5,7 +5,8 @@ const {
     getProjects,
     addProject,
     updateProject,
-    deleteProject
+    deleteProject,
+    addTicketId
 } = require("../controllers/projects")
 
 const router = express.Router()
@@ -14,6 +15,7 @@ router
     .route("/")
     .get(getProjects)
     .post(addProject)
+    .put(addTicketId)
 router
     .route("/:id")
     .put(updateProject)
