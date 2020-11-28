@@ -18,3 +18,5 @@ router
     .route("/:id")
     .put(updateProject)
     .delete(deleteProject)
+
+module.exports = router;

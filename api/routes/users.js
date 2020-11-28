@@ -14,3 +14,5 @@ router
 router
     .route("/add")
     .post(addUser)
+
+module.exports = router;

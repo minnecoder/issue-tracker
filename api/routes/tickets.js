@@ -18,3 +18,5 @@ router
     .route("/:id")
     .put(updateTicket)
     .delete(deleteTicket)
+
+module.exports = router;
