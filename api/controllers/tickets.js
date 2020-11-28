@@ -1,4 +1,8 @@
 const Ticket = require("../models/Ticket")
+// TODO make controller to add ticketHistory to ticket
+// TODO make controller to add ticketComment to ticket
+// TODO make controller to return ticket with ticketHistory and ticketComment
+
 
 // @ desc Get all tickets
 // @route GET /tickets
@@ -24,7 +28,6 @@ exports.getTickets = async (req, res) => {
 exports.addTicket = async (req, res) => {
     try {
         const ticket = await Ticket.create(req.body);
-
         return res.status(200).json({
             success: true,
             data: ticket,
