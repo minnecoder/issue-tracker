@@ -1,5 +1,7 @@
 const Project = require("../models/Project")
 
+// TODO add controller to get projects with tickets
+
 // @ desc Get all projects
 // @route GET /projects
 // @access Public
@@ -76,3 +78,28 @@ exports.deleteProject = async (req, res) => {
         return res.status(500).json({ error: "Server Error" });
     }
 };
+
+// @desc Add ticket id to project
+// @route PUT /projects
+// @access
+exports.addTicketId = async (req, res) => {
+    try {
+        const project = await Project.findById(req.body.id)
+        if (!project) {
+            return res.status(404).json({
+                success: false,
+                error: "Project not found"
+            })
+        }
+
+        project.tickets.push(req.body._id)
+        await project.save()
+        return res.status(200).json({
+            success: true,
+            data: project
+        })
+    } catch (error) {
+        console.error(error)
+        return res.status(500).json({ error: "Server Error" })
+    }
+}
