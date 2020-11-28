@@ -1,33 +1,34 @@
 import React from 'react'
 import styled from "styled-components"
 
-export default function TicketDetail() {
-  const ticket = {
-    project: 'Sample Project 1',
-    title: 'Test ticket #1',
-    description: 'This is just a test ticket',
-    assignedDev: 'John Doe',
-    submitter: 'John Smith',
-    ticketPriority: 'Medium',
-    ticketStatus: 'Open',
-    ticketType: 'Bug',
-  };
+export default function TicketDetail({ key, data }) {
+  // const ticket = {
+  //   project: 'Sample Project 1',
+  //   title: 'Test ticket #1',
+  //   description: 'This is just a test ticket',
+  //   assignedDev: 'John Doe',
+  //   submitter: 'John Smith',
+  //   ticketPriority: 'Medium',
+  //   ticketStatus: 'Open',
+  //   ticketType: 'Bug',
+  // };
 
-  const TicketItems = [
-    {
-      user: 'Jane Smith',
-      propertyChanged: 'Ticket Status',
-      oldValue: 'Open',
-      newValue: 'Resolved',
-      createdAt: '11/2/2020',
-    },
-    {
-      commenter: 'John Doe',
-      comment: 'This one thing would be a great idea',
-      createdAt: '4/1/2020',
-    },
+  // const TicketItems = [
+  //   {
+  //     user: 'Jane Smith',
+  //     propertyChanged: 'Ticket Status',
+  //     oldValue: 'Open',
+  //     newValue: 'Resolved',
+  //     createdAt: '11/2/2020',
+  //   },
+  //   {
+  //     commenter: 'John Doe',
+  //     comment: 'This one thing would be a great idea',
+  //     createdAt: '4/1/2020',
+  //   },
 
-  ];
+  // ];
+  console.log(data)
   function DateDiff(oldDate) {
     const date1 = new Date(oldDate).getTime();
     const date2 = new Date();
@@ -62,55 +63,55 @@ export default function TicketDetail() {
   return (
     <Main>
       <TicketInfo>
-        <h2>{ticket.title}</h2>
+        {/* <h2>{tickets.title}</h2> */}
         <Info>
           <div>
             <InfoItem>
               <p>Project</p>
-              <p>{ticket.project}</p>
+              {/* <p>{tickets.data.project.title}</p> */}
             </InfoItem>
             <InfoItem>
               <p>Assigned Dev</p>
-              <p>{ticket.assignedDev}</p>
+              {/* <p>{tickets.assignedDev}</p> */}
             </InfoItem>
             <InfoItem>
               <p>Created By</p>
-              <p>{ticket.submitter}</p>
+              {/* <p>{tickets.submitter}</p> */}
             </InfoItem>
 
           </div>
           <div>
             <InfoItem>
               <p>Type</p>
-              <p>{ticket.ticketType}</p>
+              {/* <p>{tickets.ticketType}</p> */}
             </InfoItem>
             <InfoItem>
               <p>Status</p>
-              <p>{ticket.ticketStatus}</p>
+              {/* <p>{tickets.ticketStatus}</p> */}
             </InfoItem>
             <InfoItem>
               <p>Priority</p>
-              <p>{ticket.ticketPriority}</p>
+              {/* <p>{tickets.ticketPriority}</p> */}
             </InfoItem>
           </div>
         </Info>
-        <Description>{ticket.description}</Description>
+        {/* <Description>{tickets.description}</Description> */}
       </TicketInfo>
       <div>
-        {TicketItems
-          .map((ticketItem) => {
+        {/* {tickets
+          .map((ticket) => {
             if ('comment' in ticketItem) {
               return (
                 <TicketComment>
                   <div>
-                    {ticketItem.commenter}
+                    {ticket.commenter}
                     {' '}
                   commented
                   {' '}
                     <span>
 
                       {DateDiff(
-                        ticketItem.createdAt,
+                        ticket.createdAt,
                       )}
                     </span>
                   </div>
@@ -148,7 +149,7 @@ export default function TicketDetail() {
               );
             }
             return null;
-          })}
+          })} */}
       </div>
       <TicketCommentBox>
         <textarea name="" id="" cols="30" rows="10" />

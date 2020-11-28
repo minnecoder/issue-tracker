@@ -4,100 +4,17 @@ import TicketDetail from "./TicketDetail"
 
 export default function TicketList() {
   const [tickets, updateTickets] = useState([])
-
+  const [detailTicket, updateDetailTicket] = useState("0")
   useEffect(() => {
     async function fetchTickets() {
-      const response = await fetch("")
+      const response = await fetch("/api/v1/ticket")
       const json = await response.json()
+      // console.log(json.data)
       updateTickets(json.data)
     }
     fetchTickets()
   }, [])
 
-
-
-  const tickets = [{
-    id: 1,
-    project: 'Sample Project 1',
-    title: 'Test ticket #1',
-    description: 'This is just a test ticket',
-    assignedDev: 'John Doe',
-    submitter: 'John Smith',
-    ticketPriority: 'Medium',
-    ticketStatus: 'Open',
-    ticketType: 'Bug',
-    changes:
-      [
-        {
-          user: 'Jane Smith',
-          propertyChanged: 'Ticket Status',
-          oldValue: 'Open',
-          newValue: 'Resolved',
-          createdAt: '11/2/2020',
-        },
-        {
-          commenter: 'John Doe',
-          comment: 'This one thing would be a great idea',
-          createdAt: '4/1/2020',
-        },
-
-      ]
-  },
-  {
-    id: 2,
-    project: 'Sample Project 2',
-    title: 'Test ticket #2',
-    description: 'This is just a test ticket',
-    assignedDev: 'John Doe',
-    submitter: 'John Smith',
-    ticketPriority: 'Medium',
-    ticketStatus: 'Open',
-    ticketType: 'Bug',
-    changes:
-      [
-        {
-          user: 'Jane Smith',
-          propertyChanged: 'Ticket Status',
-          oldValue: 'Open',
-          newValue: 'Resolved',
-          createdAt: '11/2/2020',
-        },
-        {
-          commenter: 'John Doe',
-          comment: 'This one thing would be a great idea',
-          createdAt: '4/1/2020',
-        },
-
-      ]
-  },
-  {
-    id: 3,
-    project: 'Sample Project 2',
-    title: 'Test ticket #3',
-    description: 'This is just a test ticket',
-    assignedDev: 'John Doe',
-    submitter: 'John Smith',
-    ticketPriority: 'Medium',
-    ticketStatus: 'Open',
-    ticketType: 'Bug',
-    changes:
-      [
-        {
-          user: 'Jane Smith',
-          propertyChanged: 'Ticket Status',
-          oldValue: 'Open',
-          newValue: 'Resolved',
-          createdAt: '11/2/2020',
-        },
-        {
-          commenter: 'John Doe',
-          comment: 'This one thing would be a great idea',
-          createdAt: '4/1/2020',
-        },
-
-      ]
-  },
-  ];
   return (
     <Wrapper>
       < div >
@@ -108,8 +25,9 @@ export default function TicketList() {
         {
           tickets.map((ticket) => (
             <ListInfo key={ticket.id} onClick={() => console.log(ticket.id)}>
+              {console.log(detailTicket)}
               <Left>
-                <p>{ticket.project}</p>
+                <p>{ticket.project.title}</p>
                 <p>{ticket.title}</p>
                 <p>{ticket.description}</p>
               </Left>
@@ -122,7 +40,8 @@ export default function TicketList() {
           ))
         }
       </div>
-      <TicketDetail key={ticket.id} data={ticket} />
+      {console.log(tickets)}
+      <TicketDetail key={tickets.id} data={tickets[0]} />
     </Wrapper>
   );
 }
