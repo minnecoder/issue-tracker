@@ -8,7 +8,7 @@
     "full-dev": "concurrently \"cd api && nodemon server.js\" \"cd web && npm start\" ",
     "api-dev": "\"cd api && nodemon server.js\"",
     "web": "\"cd web && npm start\"",
-    "api": "\"cd api && node server.js\""
+    "api": "\"cd api && nodemon server.js\""
   },
   "repository": {
     "type": "git",
