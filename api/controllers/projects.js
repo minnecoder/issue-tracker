@@ -1,13 +1,13 @@
 const Project = require("../models/Project")
 
-// TODO add controller to get projects with tickets
-
 // @ desc Get all projects
 // @route GET /projects
 // @access Public
 exports.getProjects = async (req, res) => {
     try {
         const projects = await Project.find()
+            .populate("tickets")
+            .exec()
 
         res.status(200).json({
             success: true,
@@ -19,6 +19,27 @@ exports.getProjects = async (req, res) => {
         return res.status(500).json({ error: "Server Error" })
     }
 }
+
+// @ desc Get all projects
+// @route GET /projects
+// @access Public
+exports.getSingleProject = async (req, res) => {
+    try {
+        const project = await Project.findById({ id: req.params.addTicketId })
+            .populate("tickets")
+            .exec()
+
+        res.status(200).json({
+            success: true,
+            data: project
+        })
+    } catch (error) {
+        console.error(error)
+        return res.status(500).json({ error: "Server Error" })
+    }
+}
+
+
 
 // @desc  Add project
 // @route POST /projects
