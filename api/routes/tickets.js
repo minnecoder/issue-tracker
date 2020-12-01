@@ -2,6 +2,7 @@ const express = require("express")
 
 const {
     getTickets,
+    getSingleTicket,
     addTicket,
     updateTicket,
     deleteTicket
@@ -16,6 +17,7 @@ router
 
 router
     .route("/:id")
+    .get(getSingleTicket)
     .put(updateTicket)
     .delete(deleteTicket)
 

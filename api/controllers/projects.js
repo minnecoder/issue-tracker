@@ -6,7 +6,13 @@ const Project = require("../models/Project")
 exports.getProjects = async (req, res) => {
     try {
         const projects = await Project.find()
-            .populate("tickets")
+            .populate({
+                path: "tickets",
+                populate: {
+                    path: "ticketComment ticketHistory",
+
+                }
+            })
             .exec()
 
         res.status(200).json({

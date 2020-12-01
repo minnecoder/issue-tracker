@@ -9,12 +9,37 @@ const Ticket = require("../models/Ticket")
 // @access Public
 exports.getTickets = async (req, res) => {
     try {
-        const tickets = await Ticket.find()
+        const tickets = await Ticket.find({})
+            .populate("ticketHistory")
+            // .populate("ticketComment ticketHistory")
+            .exec()
 
         res.status(200).json({
             success: true,
-            count: tickets.length,
+            // count: tickets.length,
             data: tickets
+        })
+    } catch (error) {
+        console.error(error)
+        return res.status(500).json({ error: "Server Error" })
+    }
+}
+
+// @ desc Get single ticket
+// @route GET /tickets/:id
+// @access Public
+exports.getSingleTicket = async (req, res) => {
+    console.log(req.params)
+    try {
+        const ticket = await Ticket.findOne({ _id: req.params.id })
+        await ticket.populate("ticketHistory").execPopulate()
+        // .populate("ticketComment ticketHistory")
+        // .exec()
+
+        res.status(200).json({
+            success: true,
+            // count: tickets.length,
+            data: ticket
         })
     } catch (error) {
         console.error(error)
@@ -79,3 +104,53 @@ exports.deleteTicket = async (req, res) => {
         return res.status(500).json({ error: "Server Error" });
     }
 };
+
+// @desc Add ticketComment to ticket
+// @route PUT /tickets/comment
+// @access
+exports.addTicketCommentToTicket = async (req, res) => {
+    try {
+        const ticket = await Ticket.findById(req.body.id)
+        if (!ticket) {
+            return res.status(404).json({
+                success: false,
+                error: "Ticket not found"
+            })
+        }
+
+        ticket.ticketComment.push(req.body._id)
+        await ticket.save()
+        return res.status(200).json({
+            success: true,
+            data: ticket
+        })
+    } catch (error) {
+        console.error(error)
+        return res.status(500).json({ error: "Server Error" })
+    }
+}
+
+// @desc Add ticketHistory to ticket
+// @route PUT /tickets/history
+// @access
+exports.addTicketHistoryToTicket = async (req, res) => {
+    try {
+        const ticket = await Ticket.findById(req.body.id)
+        if (!ticket) {
+            return res.status(404).json({
+                success: false,
+                error: "Ticket not found"
+            })
+        }
+
+        ticket.ticketHistory.push(req.body._id)
+        await ticket.save()
+        return res.status(200).json({
+            success: true,
+            data: ticket
+        })
+    } catch (error) {
+        console.error(error)
+        return res.status(500).json({ error: "Server Error" })
+    }
+}

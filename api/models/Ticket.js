@@ -34,28 +34,12 @@ const TicketSchema = new mongoose.Schema({
         required: [true, "Ticket type is required"]
     },
     ticketHistory: [{
-        user: String,
-        propertyChanged: String,
-        oldValue: String,
-        newValue: String,
-        created: {
-            type: Date,
-            default: Date.now()
-        },
-        updated: {
-            type: Date
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "TicketHistory"
     }],
     ticketComment: [{
-        user: String,
-        comment: String,
-        created: {
-            type: Date,
-            default: Date.now()
-        },
-        updated: {
-            type: Date
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "TicketComment"
 
     }],
     createdOn: {
