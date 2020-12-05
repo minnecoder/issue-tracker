@@ -1,13 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
-import Sidebar from '../components/Sidebar';
 
 export default function ManageRoles() {
   return (
     <div>
       <Header />
-      <Sidebar />
       <Main>
         <h1>ManageRoles</h1>
       </Main>

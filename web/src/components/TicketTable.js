@@ -51,20 +51,22 @@ export default function TicketTable() {
 }
 
 const Table = styled.table`
+margin: 2rem auto;
+${'' /* padding-top: 2rem; */}
+width: 90%;
 border-collapse: collapse;
-grid-area: ticketarea;
 
 thead th {
     padding: 0.5rem;
     text-align: left;
-    border-bottom: solid 1px black;
+    border-bottom: solid 1px #F8F8F8;
     background: #E0E5E9;
 }
 
 td{
   padding: 0.5rem;
   text-align: left;
-  border-bottom: solid 1px black;
+  border-bottom: solid 1px #EEE;
 }
 tr{
   height: 2rem;
