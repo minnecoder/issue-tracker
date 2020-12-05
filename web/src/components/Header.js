@@ -61,10 +61,7 @@ display: inline-flex;
 background: white;
 overflow: hidden;
 input {
-  border-top-style: hidden;
-  border-left-style: hidden;
-  border-right-style: hidden;
-  border-bottom-style: hidden;
+  border-style:hidden;
   width: 15rem;
 }
 input: focus {
