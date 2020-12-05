@@ -1,40 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 export default function TicketTable() {
-  const tickets = [{
-    title: 'Test ticket #1',
-    description: 'This is just a test ticket',
-    assignedDev: 'John Doe',
-    submitter: 'John Smith',
-    ticketPriority: 'Medium',
-    ticketStatus: 'Open',
-    ticketType: 'Bug',
-  },
-  {
-    title: 'Test ticket #2',
-    description: 'This is just a test ticket',
-    assignedDev: 'John Doe',
-    submitter: 'John Smith',
-    ticketPriority: 'Medium',
-    ticketStatus: 'Open',
-    ticketType: 'Bug',
-  },
-  {
-    title: 'Test ticket #3',
-    description: 'This is just a test ticket',
-    assignedDev: 'John Doe',
-    submitter: 'John Smith',
-    ticketPriority: 'Medium',
-    ticketStatus: 'Open',
-    ticketType: 'Bug',
-  }];
+  const [tickets, updateTickets] = useState([])
+  useEffect(() => {
+    async function fetchTickets() {
+      const response = await fetch("/api/v1/tickets")
+      const json = await response.json()
+      updateTickets(json.data)
+    }
+    fetchTickets()
+  }, [])
+
+  const dateConverter = (dateTime) => {
+    const date = dateTime.substr(0, 10).split("-")
+    date.push(date.splice(0, 1)[0])
+    return date.join("/")
+  }
+
   return (
     <Table>
       <thead>
         <tr>
           <th>Title</th>
           <th>Description</th>
+          <th>Created</th>
           <th>Assigned Developer</th>
           <th>Submitter</th>
           <th>Ticket Priority</th>
@@ -44,9 +34,10 @@ export default function TicketTable() {
       </thead>
       <tbody>
         {tickets.map((ticket) => (
-          <tr key={ticket.id}>
+          <tr key={ticket._id}>
             <td>{ticket.title}</td>
             <td>{ticket.description}</td>
+            <td>{dateConverter(ticket.createdOn)}</td>
             <td>{ticket.assignedDev}</td>
             <td>{ticket.submitter}</td>
             <td>{ticket.ticketPriority}</td>
@@ -61,16 +52,21 @@ export default function TicketTable() {
 
 const Table = styled.table`
 border-collapse: collapse;
-width: 100%;
+grid-area: ticketarea;
 
 thead th {
     padding: 0.5rem;
     text-align: left;
     border-bottom: solid 1px black;
+    background: #E0E5E9;
 }
-tbody td {
-    padding: 0.5rem;
-text-align: left;
-    border-bottom: solid 1px black;
+
+td{
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: solid 1px black;
+}
+tr{
+  height: 2rem;
 }
 `;

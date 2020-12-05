@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
-import TicketList from '../components/TicketList';
+import TicketTable from '../components/TicketTable';
 
 export default function Tickets() {
   return (
@@ -10,7 +10,7 @@ export default function Tickets() {
       <Main>
         <Header />
         <Sidebar />
-        <TicketList />
+        <TicketTable />
       </Main>
     </div>
   );
@@ -24,6 +24,6 @@ grid-template-areas:
 "header header header"
 "sidebar ticketarea ticketarea";
 grid-gap: 0;
-background: #E0E5E9;
-
+width: 100%;
+height: 100%;
 `;
