@@ -1,5 +1,4 @@
 const mongoose = require("mongoose")
-const Project = require("../models/Project")
 
 const TicketSchema = new mongoose.Schema({
     title: {
