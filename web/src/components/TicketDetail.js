@@ -1,34 +1,16 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from "styled-components"
 
 export default function TicketDetail({ key, data }) {
-  // const ticket = {
-  //   project: 'Sample Project 1',
-  //   title: 'Test ticket #1',
-  //   description: 'This is just a test ticket',
-  //   assignedDev: 'John Doe',
-  //   submitter: 'John Smith',
-  //   ticketPriority: 'Medium',
-  //   ticketStatus: 'Open',
-  //   ticketType: 'Bug',
-  // };
+  const [ticket, setTicket] = useState(data)
 
-  // const TicketItems = [
-  //   {
-  //     user: 'Jane Smith',
-  //     propertyChanged: 'Ticket Status',
-  //     oldValue: 'Open',
-  //     newValue: 'Resolved',
-  //     createdAt: '11/2/2020',
-  //   },
-  //   {
-  //     commenter: 'John Doe',
-  //     comment: 'This one thing would be a great idea',
-  //     createdAt: '4/1/2020',
-  //   },
+  useEffect(() => {
+    setTicket(data)
+  }, [data])
 
-  // ];
-  console.log(data)
+
+
+  console.log(ticket)
   function DateDiff(oldDate) {
     const date1 = new Date(oldDate).getTime();
     const date2 = new Date();
@@ -218,39 +200,39 @@ width: 6rem;
 }
 `;
 
-const TicketChange = styled.div`
-display: flex;
-justify-content: space-between;
-background: #EFF3F6;
-margin: .5rem;
-padding: .5rem;
+// const TicketChange = styled.div`
+// display: flex;
+// justify-content: space-between;
+// background: #EFF3F6;
+// margin: .5rem;
+// padding: .5rem;
 
-span {
-  padding-top: .25rem;
-  padding-left: .25rem;
-    font-size: 12px;
-    color: #B2B9BE; 
-}
-`;
+// span {
+//   padding-top: .25rem;
+//   padding-left: .25rem;
+//     font-size: 12px;
+//     color: #B2B9BE; 
+// }
+// `;
 
-const TicketComment = styled.div`
-display: flex;
-flex-direction: column;
-padding: .5rem;
+// const TicketComment = styled.div`
+// display: flex;
+// flex-direction: column;
+// padding: .5rem;
 
-div {
+// div {
 
-    padding: .5rem;
-    background: #EFF3F6;
-}
-span {
-  padding-top: .25rem;
-    font-size: 12px;
-    color: #B2B9BE; 
-}
-p {
-    margin-top: .25rem;
-    padding: .75rem;
-    border-left: solid 1px #ccc;
-}
-`;
+//     padding: .5rem;
+//     background: #EFF3F6;
+// }
+// span {
+//   padding-top: .25rem;
+//     font-size: 12px;
+//     color: #B2B9BE; 
+// }
+// p {
+//     margin-top: .25rem;
+//     padding: .75rem;
+//     border-left: solid 1px #ccc;
+// }
+// `;
