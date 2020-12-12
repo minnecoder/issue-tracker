@@ -10,13 +10,12 @@ const Ticket = require("../models/Ticket")
 exports.getTickets = async (req, res) => {
     try {
         const tickets = await Ticket.find({})
-            .populate("ticketHistory")
-            // .populate("ticketComment ticketHistory")
+            .populate("ticketComment ticketHistory")
             .exec()
 
         res.status(200).json({
             success: true,
-            // count: tickets.length,
+            count: tickets.length,
             data: tickets
         })
     } catch (error) {
