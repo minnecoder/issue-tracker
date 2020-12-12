@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
+import Sidebar from "../components/Sidebar"
+import ProjectsList from "../components/ProjectsList"
 
 export default function Projects() {
   return (
     <div>
       <Header />
       <Main>
-        <h1>Projects</h1>
+        <Sidebar />
+        <ProjectsList />
       </Main>
     </div>
   );
