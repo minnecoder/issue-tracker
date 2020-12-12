@@ -3,43 +3,44 @@ import React from 'react'
 import TicketNotes from "./TicketNotes"
 import styled from "styled-components"
 
-export default function TicketDetail() {
+export default function TicketDetails({ data }) {
+
   return (
-    <Main>
-      <TicketInfo>
-        <h2>{ticket.title}</h2>
+    <Main key={data._id}>
+      <TicketInfo >
+        <h2>{data.title}</h2>
         <Info>
           <div>
             <InfoItem>
               <p>Project</p>
-              <p>{ticket.project}</p>
+              <p>{data.project}</p>
             </InfoItem>
             <InfoItem>
               <p>Assigned Dev</p>
-              <p>{ticket.assignedDev}</p>
+              <p>{data.assignedDev}</p>
             </InfoItem>
             <InfoItem>
               <p>Created By</p>
-              <p>{ticket.submitter}</p>
+              <p>{data.submitter}</p>
             </InfoItem>
 
           </div>
           <div>
             <InfoItem>
               <p>Type</p>
-              <p>{ticket.ticketType}</p>
+              <p>{data.ticketType}</p>
             </InfoItem>
             <InfoItem>
               <p>Status</p>
-              <p>{ticket.ticketStatus}</p>
+              <p>{data.ticketStatus}</p>
             </InfoItem>
             <InfoItem>
               <p>Priority</p>
-              <p>{ticket.ticketPriority}</p>
+              <p>{data.ticketPriority}</p>
             </InfoItem>
           </div>
         </Info>
-        <Description>{ticket.description}</Description>
+        <Description>{data.description}</Description>
       </TicketInfo>
       <TicketNotes />
       <TicketComment>
