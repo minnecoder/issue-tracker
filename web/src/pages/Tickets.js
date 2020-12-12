@@ -1,20 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
-import TicketTable from '../components/TicketTable';
+import Sidebar from '../components/Sidebar';
+import TicketList from '../components/TicketList';
 
 export default function Tickets() {
   return (
     <div>
       <Main>
         <Header />
-        <TicketTable />
+        <Sidebar />
+        <TicketList />
       </Main>
     </div>
   );
 }
 
 const Main = styled.div`
-width: 100%;
-height: 100%;
+display: grid;
+grid-template-columns: 200px 1fr 1fr;
+grid-template-rows: 65px 1fr;
+grid-template-areas:
+"header header header"
+"sidebar ticketarea ticketarea";
+grid-gap: 0;
+background: #E0E5E9;
 `;

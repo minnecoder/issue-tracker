@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaSearch } from 'react-icons/fa';
 
@@ -9,13 +8,6 @@ export default function Header() {
       <Nav>
         <Left>
           <h3>Issue Tracker</h3>
-          <ul>
-            <li><SidebarLink to="/dashboard">Dashboard</SidebarLink></li>
-            <li><SidebarLink to="/manageroles">Manage Roles</SidebarLink></li>
-            <li><SidebarLink to="/manageusers">Manage Users</SidebarLink></li>
-            <li><SidebarLink to="/projects">Projects</SidebarLink></li>
-            <li><SidebarLink to="/tickets">Tickets</SidebarLink></li>
-          </ul>
         </Left>
         <Right>
           <SearchBar>
@@ -84,7 +76,4 @@ input {
 input: focus {
   outline: none;
 }
-`;
-const SidebarLink = styled(Link)`
-color: black;
 `;
