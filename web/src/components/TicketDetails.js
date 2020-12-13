@@ -12,10 +12,6 @@ export default function TicketDetails({ data }) {
         <Info>
           <div>
             <InfoItem>
-              <p>Project</p>
-              <p>{data.project}</p>
-            </InfoItem>
-            <InfoItem>
               <p>Assigned Dev</p>
               <p>{data.assignedDev}</p>
             </InfoItem>
