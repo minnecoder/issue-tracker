@@ -4,6 +4,7 @@ import TicketDetails from "./TicketDetails"
 
 export default function TicketList() {
     const [tickets, updateTickets] = useState([])
+
     const [ticketIndex, updateticketIndex] = useState("0")
     useEffect(() => {
         async function fetchTickets() {
@@ -13,6 +14,13 @@ export default function TicketList() {
         }
         fetchTickets()
     }, [])
+
+    const dateConverter = (dateTime) => {
+        const date = dateTime.substr(0, 10).split("-")
+        date.push(date.splice(0, 1)[0])
+        return date.join("/")
+    }
+
     return (
         <Wrapper>
             < div >
@@ -20,22 +28,33 @@ export default function TicketList() {
                     <h3>Tickets</h3>
                     <button type="submit">Create A Ticket</button>
                 </TableTitle>
-                {
-                    tickets.map((ticket, index) => (
-                        <ListInfo key={ticket._id} onClick={() => updateticketIndex(index)}>
-                            <Left>
-                                <p>{ticket.project}</p>
-                                <p>{ticket.title}</p>
-                                <p>{ticket.description}</p>
-                            </Left>
-                            <Right>
-                                <p>{ticket.ticketType}</p>
-                                <p>{ticket.ticketStatus}</p>
-                                <p>{ticket.ticketPriority}</p>
-                            </Right>
-                        </ListInfo>
-                    ))
-                }
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Created</th>
+                            <th>Assigned Developer</th>
+                            <th>Submitter</th>
+                            <th>Ticket Priority</th>
+                            <th>Ticket Status</th>
+                            <th>Ticket Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {tickets.map((ticket, index) => (
+                            <tr onClick={() => updateticketIndex(index)}>
+                                <td>{ticket.title}</td>
+                                <td>{dateConverter(ticket.createdOn)}</td>
+                                <td>{ticket.assignedDev}</td>
+                                <td>{ticket.submitter}</td>
+                                <td>{ticket.ticketPriority}</td>
+                                <td>{ticket.ticketStatus}</td>
+                                <td>{ticket.ticketType}</td>
+                            </tr>
+                        ))}
+
+                    </tbody>
+                </Table>
             </div>
             { !!tickets.length && <TicketDetails key={tickets._id} data={tickets[ticketIndex]} />}
 
@@ -45,38 +64,33 @@ export default function TicketList() {
 
 const Wrapper = styled.div` 
 display: flex;
+flex: 1;
+justify-content: space-between;
 background: white;
 grid-area: ticketarea;
 height: calc(100vh - 4.25rem);
 `
 
-const ListInfo = styled.div`
-display: flex;
-justify-content: space-between;
+const Table = styled.table`
 width: 100%;
-padding: .5rem .75rem;
-border-bottom: solid 1px #ccc;
-`;
+border-collapse: collapse;
 
-const Left = styled.div`
-display: flex;
-flex: 2;
-flex-direction: column;
-p {
-padding: .25rem;
+thead th {
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: solid 1px #F8F8F8;
+    background: #E0E5E9;
 }
-`;
 
-const Right = styled.div`
-display: flex;
-flex: 1;
-flex-direction: column;
-align-items: end;
-width: 500px;
-p {
-padding: .25rem;
+td{
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: solid 1px #EEE;
 }
-`;
+tr{
+  height: 2rem;
+}
+`
 
 const TableTitle = styled.div`
 display: flex;
