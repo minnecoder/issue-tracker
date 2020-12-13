@@ -34,7 +34,6 @@ export default function TicketList() {
                             <th>Title</th>
                             <th>Created</th>
                             <th>Assigned Developer</th>
-                            <th>Submitter</th>
                             <th>Ticket Priority</th>
                             <th>Ticket Status</th>
                             <th>Ticket Type</th>
@@ -46,7 +45,6 @@ export default function TicketList() {
                                 <td>{ticket.title}</td>
                                 <td>{dateConverter(ticket.createdOn)}</td>
                                 <td>{ticket.assignedDev}</td>
-                                <td>{ticket.submitter}</td>
                                 <td>{ticket.ticketPriority}</td>
                                 <td>{ticket.ticketStatus}</td>
                                 <td>{ticket.ticketType}</td>
@@ -87,6 +85,12 @@ td{
   text-align: left;
   border-bottom: solid 1px #EEE;
 }
+td:nth-child(1) {
+    max-width: 400px;
+    white-space: nowrap;
+  overflow: hidden;
+    text-overflow: ellipsis;
+}
 tr{
   height: 2rem;
 }
@@ -97,6 +101,9 @@ display: flex;
 justify-content: space-between;
 padding: 1rem 1rem;
 border-bottom: solid 1px #ccc;
+h3 {
+    padding-top: .25rem; 
+}
 button {
       padding: .5rem;
 }
