@@ -18,14 +18,17 @@ export default function Sidebar() {
 
 const Main = styled.div`
 grid-area: sidebar;
+height: calc(100vh - 4rem);
 width: 200px;
 background: white;
 border-right: solid 1px #ddd;
 ul {
     margin-left: 3rem;
+   
 }
 li {
 padding: 1rem 0;
+justify-content: space-between;
 }
 `;
 
