@@ -7,8 +7,8 @@ import ProjectsList from "../components/ProjectsList"
 export default function Projects() {
   return (
     <div>
-      <Header />
       <Main>
+        <Header />
         <Sidebar />
         <ProjectsList />
       </Main>
@@ -17,9 +17,12 @@ export default function Projects() {
 }
 
 const Main = styled.div`
-position: fixed;
-right: 0;
-height: calc(100vh - 4rem);
-width: calc(100% - 200px);
-background: lightgray;
+display: grid;
+grid-template-columns: 200px 1fr 1fr;
+grid-template-rows: 65px 1fr;
+grid-template-areas:
+"header header header"
+"sidebar projectarea projectarea";
+grid-gap: 0;
+background: white;
 `;
