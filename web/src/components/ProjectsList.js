@@ -13,6 +13,10 @@ export default function ProjectsList() {
     }, [])
     return (
         <div>
+            <TableTitle>
+                <h3>Projects</h3>
+                <button type="submit">Create A Ticket</button>
+            </TableTitle>
             <Table>
                 <thead>
                     <tr>
@@ -42,7 +46,7 @@ const Table = styled.table`
 grid-area: projectarea;
 background: white;
 border-collapse: collapse;
-width: calc(100vw - 200px);
+width: calc(100vw - 220px);
 
 thead th {
     padding: 1rem;
@@ -59,4 +63,17 @@ tr{
     height: 2rem;
 }
 
+`
+
+const TableTitle = styled.div`
+display: flex;
+justify-content: space-between;
+padding: 1rem 2rem;
+border-bottom: solid 1px #ccc;
+h3 {
+    padding-top: .25rem; 
+}
+button {
+      padding: .5rem;
+}
 `
