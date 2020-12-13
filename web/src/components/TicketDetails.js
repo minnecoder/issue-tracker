@@ -81,7 +81,6 @@ margin: .5rem 0;
 
 const Main = styled.div`
 background: white;
-
 `
 
 
