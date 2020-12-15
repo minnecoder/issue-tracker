@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import TicketDetails from "./TicketDetails"
+import CreateTicketModal from "./CreateTicketModal"
 
 export default function TicketList() {
+    const [show, setShow] = useState(false)
+    const openModal = () => setShow(true)
+    const closeModal = () => setShow(false)
     const [tickets, updateTickets] = useState([])
-
     const [ticketIndex, updateticketIndex] = useState("0")
     useEffect(() => {
         async function fetchTickets() {
@@ -26,7 +29,7 @@ export default function TicketList() {
             < div >
                 <TableTitle>
                     <h3>Tickets</h3>
-                    <button type="submit">Create A Ticket</button>
+                    <button onClick={openModal}>Create A Ticket</button>
                 </TableTitle>
                 <Table>
                     <thead>
@@ -55,7 +58,7 @@ export default function TicketList() {
                 </Table>
             </div>
             { !!tickets.length && <TicketDetails key={tickets._id} data={tickets[ticketIndex]} />}
-
+            {show && <CreateTicketModal closeModal={closeModal} show={show} />}
         </Wrapper>
     );
 }

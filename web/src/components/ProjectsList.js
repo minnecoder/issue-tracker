@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import styled from "styled-components"
+import AddProjectModal from "./AddProjectModal"
+
 
 export default function ProjectsList() {
     const [projects, updateProjects] = useState([])
+    const [show, setShow] = useState(false)
+    const openModal = () => setShow(true)
+    const closeModal = () => setShow(false)
+
     useEffect(() => {
         async function fetchProjects() {
             const response = await fetch("/api/v1/projects")
@@ -15,7 +21,7 @@ export default function ProjectsList() {
         <div>
             <TableTitle>
                 <h3>Projects</h3>
-                <button type="submit">Create A Ticket</button>
+                <button onClick={openModal}>Add A Project</button>
             </TableTitle>
             <Table>
                 <thead>
@@ -37,6 +43,8 @@ export default function ProjectsList() {
 
                 </tbody>
             </Table>
+            {show && <AddProjectModal closeModal={closeModal} show={show} />}
+
         </div>
     )
 }
