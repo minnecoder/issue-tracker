@@ -41,16 +41,9 @@ align-items: center;
 
 h3{
   padding: 0 2rem;
+  color: white;
 }
 
-ul {
-  display: flex;
-    margin-left: 3rem;
-}
-
-li {
-padding: .5rem;
-}
 `;
 
 const Right = styled.ul`
@@ -60,6 +53,7 @@ margin-right: 2rem;
 
 li {
   padding: 0 1rem;
+  color: white;
 }
 `;
 
@@ -68,10 +62,12 @@ margin-left: 2rem;
 display: inline-flex;
 background: #128DEB;
 overflow: hidden;
+color: white;
 input {
   border-style:hidden;
   background: #128DEB;
   width: 15rem;
+  color: white;
 }
 input: focus {
   outline: none;
