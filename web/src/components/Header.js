@@ -24,8 +24,7 @@ export default function Header() {
 
 const Main = styled.div`
 grid-area: header;
-height: 4rem;
-border-bottom: solid 1px #ddd;
+height: 65px;
 background: #128DEB;
 `;
 
