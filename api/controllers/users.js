@@ -8,16 +8,16 @@ const User = require("../models/User");
 
 exports.addUser = async (req, res) => {
     // Check if user is already used
-    const userExists = await User.findOne({ userName: req.body.userName });
+    const userExists = await User.findOne({ email: req.body.email });
     if (userExists)
-        return res.status(400).json({ error: "User name already exists" });
+        return res.status(400).json({ error: "Email already exists" });
 
     // Create hashed password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
     try {
         const user = await User.create({
-            userName: req.body.userName,
+            email: req.body.email,
             password: hashedPassword,
             role: "user",
         });
@@ -38,7 +38,7 @@ exports.addUser = async (req, res) => {
 
 exports.loginUser = async (req, res) => {
     // Check if user exists
-    const user = await User.findOne({ userName: req.body.userName });
+    const user = await User.findOne({ email: req.body.email });
     if (!user) {
         return res.status(400).json({ error: "User name or password is wrong" });
     }
