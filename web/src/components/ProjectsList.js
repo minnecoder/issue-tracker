@@ -60,7 +60,7 @@ thead th {
     padding: 1rem;
     text-align: left;
     border-bottom: solid 1px #F8F8F8;
-    background: #E0E5E9;
+    background: #e7f3fd;
 }
 td{
   padding: 1rem;
@@ -77,11 +77,12 @@ const TableTitle = styled.div`
 display: flex;
 justify-content: space-between;
 padding: 1rem 2rem;
-border-bottom: solid 1px #ccc;
 h3 {
     padding-top: .25rem; 
 }
 button {
       padding: .5rem;
+      background: #eb7012;
+      color: white;
 }
 `
