@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router"
 import styled from "styled-components";
 
+
 export default function Login() {
+    const history = useHistory()
     const [state, setState] = useState({
         firstName: "",
         lastName: "",
@@ -19,8 +21,40 @@ export default function Login() {
         event.preventDefault()
     }
 
-    function handleSubmit() {
-        console.log()
+    function handleSubmit(event) {
+
+        event.preventDefault()
+        fetch("/api/v1/users/add", {
+            method: "POST",
+            mode: "cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                firstName: state.firstName,
+                lastName: state.lastName,
+                email: state.email,
+                password: state.password
+            })
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (Object.prototype.hasOwnProperty.call(data, "error")) {
+                    setState({
+                        error: data.error,
+                        firstName: "",
+                        lastName: "",
+                        email: "",
+                        password: ""
+                    });
+
+                }
+                if (Object.prototype.hasOwnProperty.call(data, "token")) {
+                    sessionStorage.setItem("token", data.token);
+                    sessionStorage.setItem("First Name", data.firstName);
+                    sessionStorage.setItem("Last Name", data.lastName);
+
+                    history.push("/tickets");
+                }
+            });
     }
     return (
         <LoginWrapper>
@@ -58,7 +92,7 @@ export default function Login() {
                     onChange={handleChange}
                 />
 
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Submit" onClick={handleSubmit} />
 
             </LoginForm>
         </LoginWrapper>
@@ -102,6 +136,8 @@ const LoginForm = styled.form`
     margin: 0.5rem 0;
     padding: 1rem 0;
     text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
   }
   input[type="submit"] {
       margin-top: .75rem;
