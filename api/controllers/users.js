@@ -17,6 +17,8 @@ exports.addUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
     try {
         const user = await User.create({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
             email: req.body.email,
             password: hashedPassword,
             role: "user",
@@ -51,8 +53,16 @@ exports.loginUser = async (req, res) => {
 
     // Create and assign token
     const token = jwt.sign(
-        { _id: user._id, role: user.role },
+        {
+            _id: user._id,
+            role: user.role,
+        },
         process.env.JWT_SECRET
     );
-    return res.header("Authorization", token).json({ token });
+
+    return res.status(200).json({
+        token,
+        firstName: user.firstName,
+        lastName: user.lastName
+    });
 };
