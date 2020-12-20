@@ -44,7 +44,7 @@ export default function TicketList() {
                     </thead>
                     <tbody>
                         {tickets.map((ticket, index) => (
-                            <tr onClick={() => updateticketIndex(index)}>
+                            <tr key={index} onClick={() => updateticketIndex(index)}>
                                 <td>{ticket.title}</td>
                                 <td>{dateConverter(ticket.createdOn)}</td>
                                 <td>{ticket.assignedDev}</td>
