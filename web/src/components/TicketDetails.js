@@ -3,11 +3,11 @@ import React from 'react'
 import TicketNotes from "./TicketNotes"
 import styled from "styled-components"
 
-export default function TicketDetails({ data }) {
+export default function TicketDetails({ data, index }) {
 
   return (
-    <Main key={data._id}>
-      <TicketInfo >
+    <Main>
+      <TicketInfo key={index}>
         <h2>{data.title}</h2>
         <Info>
           <div>
