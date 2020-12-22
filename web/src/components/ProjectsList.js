@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from "styled-components"
 import AddProjectModal from "./AddProjectModal"
 
-
+// TODO : Refresh projects after adding new project
 export default function ProjectsList() {
     const [projects, updateProjects] = useState([])
     const [show, setShow] = useState(false)
@@ -16,7 +16,7 @@ export default function ProjectsList() {
             updateProjects(json.data)
         }
         fetchProjects()
-    }, [])
+    }, [projects])
     return (
         <div>
             <TableTitle>
