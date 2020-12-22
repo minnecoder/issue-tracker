@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import ReactDOM from "react-dom"
+import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 
 
 export default function AddProjectModal(props) {
+    let history = useHistory()
     const [state, setState] = useState({
         title: "",
         description: "",
@@ -18,8 +20,19 @@ export default function AddProjectModal(props) {
         // event.preventDefault()
     }
 
-    function handleSubmit() {
-        console.log()
+    async function handleSubmit(event) {
+        event.preventDefault()
+        const response = await fetch("api/v1/projects", {
+            method: "POST",
+            mode: "cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                title: state.title,
+                description: state.description
+            })
+        })
+        history.push("/projects")
+        closeModal()
     }
 
 
