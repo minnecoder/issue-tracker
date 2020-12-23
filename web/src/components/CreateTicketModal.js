@@ -1,16 +1,9 @@
 import React, { useState } from 'react'
 import ReactDOM from "react-dom"
 import styled from "styled-components"
-
+//TODO Make drop down of projects(return project name and ids)
 
 export default function CreateTicketModal(props) {
-    // inputs needed
-    // title 
-    // description 
-    // drop down ticket type
-    // drop down ticket status
-    // drop down ticket priority
-    // user name
     const [state, setState] = useState({
         title: "",
         description: "",
@@ -28,8 +21,25 @@ export default function CreateTicketModal(props) {
         // event.preventDefault()
     }
 
-    function handleSubmit() {
-        console.log()
+    async function handleSubmit(event) {
+        event.preventDefault()
+        const firstName = sessionStorage.getItem("firstName")
+        const lastName = sessionStorage.getItem("lastName")
+        const fullName = `${firstName}${lastName}`
+        const response = await fetch("/api/v1/tickets", {
+            method: "POST",
+            mode: "cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                title: state.title,
+                description: state.description,
+                assignedDev: fullName,
+                submitter: fullName,
+                ticketPriority: state.ticketPriority,
+                ticketType: state.ticketType
+            })
+        })
+        closeModal()
     }
 
     const { closeModal } = props
