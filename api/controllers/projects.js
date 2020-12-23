@@ -130,3 +130,19 @@ exports.addTicketId = async (req, res) => {
         return res.status(500).json({ error: "Server Error" })
     }
 }
+
+exports.getProjectsDropDown = async (req, res) => {
+    try {
+        const projects = await Project.find().select("title")
+
+
+        res.status(200).json({
+            success: true,
+            count: projects.length,
+            data: projects
+        })
+    } catch (error) {
+        console.error(error)
+        return res.status(500).json({ error: "Server Error" })
+    }
+}
