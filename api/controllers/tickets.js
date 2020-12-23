@@ -1,8 +1,7 @@
 const Ticket = require("../models/Ticket")
-// TODO make controller to add ticketHistory to ticket
-// TODO make controller to add ticketComment to ticket
-// TODO make controller to return ticket with ticketHistory and ticketComment
 
+// TODO make controller to return ticket with ticketHistory and ticketComment
+// TODO Need add Ticket to return list of projects (ids and project titles)
 
 // @ desc Get all tickets
 // @route GET /tickets
