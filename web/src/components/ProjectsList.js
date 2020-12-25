@@ -84,5 +84,6 @@ button {
       padding: .5rem;
       background: #eb7012;
       color: white;
+      border-radius: 5px;
 }
 `

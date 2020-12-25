@@ -77,6 +77,7 @@ margin: .5rem 0;
 
 const Main = styled.div`
 background: white;
+border-left: 1px solid #ccc;
 `
 
 
@@ -100,6 +101,8 @@ button {
 margin-top: .5rem;
 padding: .5rem;
 width: 6rem;
-
+background: #EB7012;
+color: white;
+border-radius: 5px;
 }
 `;

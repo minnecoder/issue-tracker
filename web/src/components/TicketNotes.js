@@ -110,7 +110,7 @@ export default function TicketDetails() {
 const TicketChange = styled.div`
 display: flex;
 justify-content: space-between;
-background: #EFF3F6;
+background: #E7F3FD;
 margin: .5rem;
 padding: .5rem;
 
@@ -130,7 +130,7 @@ padding: .5rem;
 div {
    
     padding: .5rem;
-    background: #EFF3F6;
+    background: #E7F3FD;
 }
 span {
   padding-top: .25rem;
