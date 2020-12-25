@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactDOM from "react-dom"
 import styled from "styled-components"
-//TODO Make drop down of projects(return project name and ids)
+//TODO Add ticket ID to correct project
 
 export default function CreateTicketModal(props) {
+    const [projects, setProjects] = useState([])
     const [state, setState] = useState({
         title: "",
         description: "",
@@ -11,14 +12,20 @@ export default function CreateTicketModal(props) {
         ticketPriority: "",
         user: ""
     })
+    useEffect(() => {
+        async function fetchProjects() {
+            const response = await fetch("/api/v1/projects/dropdown")
+            const json = await response.json()
+            setProjects(json.data)
+        }
+        fetchProjects()
+    }, [])
     function handleChange(event) {
         console.log(event.target)
-        // console.log(event.target.value)
         setState({
             ...state,
             [event.target.name]: event.target.value
         })
-        // event.preventDefault()
     }
 
     async function handleSubmit(event) {
@@ -50,6 +57,20 @@ export default function CreateTicketModal(props) {
                 <button className="closeBtn" onClick={closeModal}>X</button>
                 <h1>Create A Ticket</h1>
                 <form onSubmit={handleSubmit}>
+                    <label>
+                        Project
+                        <select
+                            name="project"
+                            value={state.ticketPriority}
+                            onChange={handleChange}>
+
+                            {projects.map((project, index) => (
+
+                                <option key={index} value={project.title}>{project.title}</option>
+                            ))}
+
+                        </select>
+                    </label>
                     <input
                         name="title"
                         type="text"
