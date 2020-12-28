@@ -49,6 +49,7 @@ exports.getSingleTicket = async (req, res) => {
 // @route POST /tickets
 // @access Public
 exports.addTicket = async (req, res) => {
+    // TODO Get project ID from req
     try {
         const ticket = await Ticket.create(req.body);
         return res.status(200).json({
