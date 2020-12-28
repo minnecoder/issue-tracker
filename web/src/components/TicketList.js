@@ -16,7 +16,7 @@ export default function TicketList() {
             updateTickets(json.data)
         }
         fetchTickets()
-    }, [])
+    }, [tickets])
 
     const dateConverter = (dateTime) => {
         const date = dateTime.substr(0, 10).split("-")
