@@ -27,7 +27,6 @@ export default function CreateTicketModal(props) {
     }, [])
 
     function handleChange(event) {
-        console.log(event.target)
         setState({
             ...state,
             [event.target.name]: event.target.value
@@ -38,12 +37,13 @@ export default function CreateTicketModal(props) {
         event.preventDefault()
         const firstName = sessionStorage.getItem("firstName")
         const lastName = sessionStorage.getItem("lastName")
-        const fullName = `${firstName}${lastName}`
+        const fullName = `${firstName} ${lastName}`
         await fetch("/api/v1/tickets", {
             method: "POST",
             mode: "cors",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
+                project: state.project,
                 title: state.title,
                 description: state.description,
                 assignedDev: fullName,
@@ -97,11 +97,11 @@ export default function CreateTicketModal(props) {
                             value={state.ticketPriority}
                             onChange={handleChange}>
                             <option value="">-</option>
-                            <option value="lowest">Lowest</option>
-                            <option value="low">Low</option>
-                            <option value="medium">Medium</option>
-                            <option value="high">High</option>
-                            <option value="highest">Highest</option>
+                            <option value="Lowest">Lowest</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                            <option value="Highest">Highest</option>
                         </select>
                     </label>
                     <label>
@@ -111,11 +111,11 @@ export default function CreateTicketModal(props) {
                             value={state.ticketType}
                             onChange={handleChange}>
                             <option value="">-</option>
-                            <option value="bug">Bug</option>
-                            <option value="new feature">New Feature</option>
-                            <option value="improvement">Improvement</option>
-                            <option value="task">Task</option>
-                            <option value="testing">Testing</option>
+                            <option value="Bug">Bug</option>
+                            <option value="New Feature">New Feature</option>
+                            <option value="Improvement">Improvement</option>
+                            <option value="Task">Task</option>
+                            <option value="Testing">Testing</option>
                         </select>
                     </label>
                     <button onClick={handleSubmit} className="submitBtn">Submit</button>
@@ -179,6 +179,9 @@ select{
     width: 8rem;
     padding: .5rem;
     margin: .5rem;
+    background: #EB7012;
+    color: white;
+    border-radius: 5px;
 }
 .closeBtn{
     position: absolute;
