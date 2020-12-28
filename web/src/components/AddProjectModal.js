@@ -119,6 +119,9 @@ select{
     width: 8rem;
     padding: .5rem;
     margin: .5rem;
+    background: #EB7012;
+    color: white;
+    border-radius: 5px;
 }
 .closeBtn{
     position: absolute;
