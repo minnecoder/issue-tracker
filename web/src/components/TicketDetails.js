@@ -85,7 +85,7 @@ const TicketComment = styled.div`
   display: flex;
   flex-direction: column;
   width: 40rem;
-  margin: 0 auto ;
+  margin: 0 1rem ;
 
 input[type=text] {
   

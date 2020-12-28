@@ -19,11 +19,11 @@ export default function Sidebar() {
 const Main = styled.div`
 grid-area: sidebar;
 height: calc(100vh - 65px);
-width: 200px;
+width: 130px;
 background: #a0d1f7;
 border-right: solid 1px #ddd;
 ul {
-    margin-left: 3rem;
+    margin-left: 1rem;
    height: 100%
 }
 li {
