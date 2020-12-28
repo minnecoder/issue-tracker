@@ -5,21 +5,27 @@ import styled from "styled-components"
 
 export default function CreateTicketModal(props) {
     const [projects, setProjects] = useState([])
+    const [projectID, setProjectID] = useState()
     const [state, setState] = useState({
+        project: "",
         title: "",
         description: "",
         ticketType: "",
         ticketPriority: "",
         user: ""
     })
+
     useEffect(() => {
         async function fetchProjects() {
             const response = await fetch("/api/v1/projects/dropdown")
             const json = await response.json()
+            const data = json.data
+            data.unshift({ _id: 0, title: "-" })
             setProjects(json.data)
         }
         fetchProjects()
     }, [])
+
     function handleChange(event) {
         console.log(event.target)
         setState({
@@ -33,7 +39,7 @@ export default function CreateTicketModal(props) {
         const firstName = sessionStorage.getItem("firstName")
         const lastName = sessionStorage.getItem("lastName")
         const fullName = `${firstName}${lastName}`
-        const response = await fetch("/api/v1/tickets", {
+        await fetch("/api/v1/tickets", {
             method: "POST",
             mode: "cors",
             headers: { "Content-Type": "application/json" },
@@ -61,14 +67,12 @@ export default function CreateTicketModal(props) {
                         Project
                         <select
                             name="project"
-                            value={state.ticketPriority}
-                            onChange={handleChange}>
-
-                            {projects.map((project, index) => (
-
-                                <option key={index} value={project.title}>{project.title}</option>
+                            value={state.project}
+                            onChange={handleChange}
+                        >
+                            {projects.map((project, _id) => (
+                                < option key={project._id} value={project.title} >  { project.title}</option>
                             ))}
-
                         </select>
                     </label>
                     <input
