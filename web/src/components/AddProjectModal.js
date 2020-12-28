@@ -22,7 +22,7 @@ export default function AddProjectModal(props) {
 
     async function handleSubmit(event) {
         event.preventDefault()
-        const response = await fetch("api/v1/projects", {
+        await fetch("api/v1/projects", {
             method: "POST",
             mode: "cors",
             headers: { "Content-Type": "application/json" },
