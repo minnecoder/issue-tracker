@@ -54,7 +54,7 @@ export default function TicketDetails() {
         .map((ticketItem) => {
           if ('comment' in ticketItem) {
             return (
-              <TicketComment>
+              <TicketComment key={ticketItem.commenter}>
                 <div>
                   {ticketItem.commenter}
                   {' '}
@@ -75,7 +75,7 @@ export default function TicketDetails() {
           }
           if ('oldValue' in ticketItem) {
             return (
-              <TicketChange>
+              <TicketChange key={ticketItem.user}>
                 <p>
                   {ticketItem.user}
                   {' '}
