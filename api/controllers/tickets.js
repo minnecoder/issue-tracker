@@ -1,7 +1,7 @@
 const Ticket = require("../models/Ticket")
+const Project = require("../models/Project")
 
 // TODO make controller to return ticket with ticketHistory and ticketComment
-// TODO Need add Ticket to return list of projects (ids and project titles)
 
 // @ desc Get all tickets
 // @route GET /tickets
@@ -45,13 +45,22 @@ exports.getSingleTicket = async (req, res) => {
     }
 }
 
-// @desc  Add ticket
+// @desc  Add ticket and add ticket ID 
 // @route POST /tickets
 // @access Public
 exports.addTicket = async (req, res) => {
-    // TODO Get project ID from req
+
     try {
+        // create ticket with data from body
         const ticket = await Ticket.create(req.body);
+        // get project that ticket belongs to (project name in body)
+        const project = await Project.find({ title: req.body.project })
+        // get ticket id 
+        const ticketToAdd = await Ticket.find({ title: req.body.title })
+
+        // add ticket id to project
+        project[0].tickets.push(ticketToAdd[0]._id.toString())
+        await project[0].save()
         return res.status(200).json({
             success: true,
             data: ticket,
@@ -61,6 +70,7 @@ exports.addTicket = async (req, res) => {
         return res.status(500).json({ error: "Server Error" });
     }
 };
+
 
 // @desc Update ticket
 // @route PUT /tickets/:id
