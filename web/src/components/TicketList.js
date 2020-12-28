@@ -70,6 +70,7 @@ justify-content: space-between;
 background: white;
 grid-area: ticketarea;
 height: calc(100vh - 4.25rem);
+overflow-y: scroll;
 `
 
 const Table = styled.table`
