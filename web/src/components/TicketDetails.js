@@ -1,7 +1,7 @@
 import React from 'react'
-// import TicketInfo from './TicketInfo'
 import TicketNotes from "./TicketNotes"
 import styled from "styled-components"
+import { FaEdit } from 'react-icons/fa';
 
 export default function TicketDetails({ data, index }) {
 
@@ -9,6 +9,7 @@ export default function TicketDetails({ data, index }) {
     <Main>
       <TicketInfo key={index}>
         <h2>{data.title}</h2>
+        <FaEdit />
         <Info>
           <div>
             <InfoItem>
@@ -62,6 +63,7 @@ const Info = styled.div`
 display: flex;
 justify-content: space-between;
 border-bottom: solid 1px #ddd;
+margin: 0 1rem;
 `;
 
 const InfoItem = styled.section`
