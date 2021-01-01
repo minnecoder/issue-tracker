@@ -50,8 +50,7 @@ export default function TicketDetails({ data, index }) {
         newValue: state.ticketPriority
       })
     }
-    console.log(arr)
-    // object must have user name, property changed(i.e. Ticket Status), old value, and new value
+
     // iterate through array of objects and send each item to API end point
     for (let i = 0; i < arr.length; i++) {
       await fetch("/api/v1/tickethistorys", {
