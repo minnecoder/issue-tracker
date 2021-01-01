@@ -5,6 +5,8 @@ import CreateTicketModal from "./CreateTicketModal"
 
 export default function TicketList() {
     const [show, setShow] = useState(false)
+    const [runTickets, setRunTickets] = useState(false)
+    const reRender = () => setRunTickets(true)
     const openModal = () => setShow(true)
     const closeModal = () => setShow(false)
     const [tickets, updateTickets] = useState([])
@@ -16,7 +18,7 @@ export default function TicketList() {
             updateTickets(json.data)
         }
         fetchTickets()
-    }, [tickets])
+    }, [runTickets])
 
     const dateConverter = (dateTime) => {
         const date = dateTime.substr(0, 10).split("-")
@@ -58,7 +60,7 @@ export default function TicketList() {
                 </Table>
             </div>
             { !!tickets.length && <TicketDetails key={tickets._id} data={tickets[ticketIndex]} />}
-            {show && <CreateTicketModal closeModal={closeModal} show={show} />}
+            {show && <CreateTicketModal reRender={reRender} closeModal={closeModal} show={show} />}
         </Wrapper>
     );
 }

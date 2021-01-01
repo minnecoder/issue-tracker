@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from "react-dom"
 import styled from "styled-components"
-//TODO Add ticket ID to correct project
 
 export default function CreateTicketModal(props) {
     const [projects, setProjects] = useState([])
-    const [projectID, setProjectID] = useState()
     const [state, setState] = useState({
         project: "",
         title: "",
@@ -52,10 +50,11 @@ export default function CreateTicketModal(props) {
                 ticketType: state.ticketType
             })
         })
+        reRender()
         closeModal()
     }
 
-    const { closeModal } = props
+    const { reRender, closeModal } = props
     const modal = (
         <>
             <Overlay />
