@@ -8,7 +8,8 @@ export default function TicketDetails({ data, index }) {
   const [state, setState] = useState({
     ticketPriority: "",
     ticketType: "",
-    ticketStatus: ""
+    ticketStatus: "",
+    ticketComment: ""
   })
 
   function handleChange(event) {
@@ -69,6 +70,23 @@ export default function TicketDetails({ data, index }) {
     setIsEdited(false)
 
   }
+
+  async function submitComment() {
+    const firstName = sessionStorage.getItem("firstName")
+    const lastName = sessionStorage.getItem("lastName")
+    const fullName = `${firstName} ${lastName}`
+    await fetch("/api/v1/ticketcomments", {
+      method: "POST",
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user: fullName,
+        comment: state.ticketComment
+      })
+    })
+    setState({ ticketComment: "" })
+  }
+
   return (
     <Wrapper>
       <div className="ticketInfo" key={index}>
@@ -162,10 +180,10 @@ export default function TicketDetails({ data, index }) {
       </div >
       <TicketNotes />
       <div className="ticketComment">
-        <textarea name="" id="" cols="30" rows="10" />
-        <button type="submit">Submit</button>
+        <textarea name="ticketComment" value={state.ticketComment} onChange={handleChange} cols="30" rows="10" />
+        <button onClick={submitComment} type="submit">Submit</button>
       </div>
-    </Wrapper >)
+    </Wrapper>)
 }
 
 
