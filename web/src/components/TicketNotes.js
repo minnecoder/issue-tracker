@@ -2,67 +2,60 @@ import React from 'react';
 import styled from 'styled-components';
 import DateDiff from "../helpers/DateDiff"
 
-export default function TicketDetails() {
-  const TicketItems = [
-    {
-      user: 'Jane Smith',
-      propertyChanged: 'Ticket Status',
-      oldValue: 'Open',
-      newValue: 'Resolved',
-      createdAt: '11/2/2020',
-    },
-    {
-      commenter: 'John Doe',
-      comment: 'This one thing would be a great idea',
-      createdAt: '4/1/2020',
-    },
+export default function TicketNotes(data) {
+  const notes = []
+  for (let i = 0; i < data.data.ticketComment.length; i++) {
+    notes.push(data.data.ticketComment[i])
+  }
+  for (let i = 0; i < data.data.ticketHistory.length; i++) {
+    notes.push(data.data.ticketHistory[i])
+  }
 
-  ];
   return (
     <div>
-      {TicketItems
-        .map((ticketItem) => {
-          if ('comment' in ticketItem) {
+      {notes
+        .map((note => {
+          if ('comment' in note) {
             return (
-              <TicketComment key={ticketItem.commenter}>
+              <TicketComment key={note._id}>
                 <div>
-                  {ticketItem.commenter}
+                  {note.user}
                   {' '}
                   commented
                   {' '}
                   <span>
 
                     {DateDiff(
-                      ticketItem.createdAt,
+                      note.created,
                     )}
                   </span>
                 </div>
                 <p>
-                  {ticketItem.comment}
+                  {note.comment}
                 </p>
               </TicketComment>
             );
           }
-          if ('oldValue' in ticketItem) {
+          if ('oldValue' in note) {
             return (
-              <TicketChange key={ticketItem.user}>
+              <TicketChange key={note._id}>
                 <p>
-                  {ticketItem.user}
+                  {note.user}
                   {' '}
                   changed
                   {' '}
-                  {ticketItem.propertyChanged}
+                  {note.propertyChanged}
                   {' '}
                   from
                   {' '}
-                  {ticketItem.oldValue}
+                  {note.oldValue}
                   {' '}
                   to
                   {' '}
-                  {ticketItem.newValue}
+                  {note.newValue}
                   <span>
                     {DateDiff(
-                      ticketItem.createdAt,
+                      note.created,
                     )}
                   </span>
                 </p>
@@ -71,7 +64,7 @@ export default function TicketDetails() {
             );
           }
           return null;
-        })}
+        }))}
     </div>
 
   );
