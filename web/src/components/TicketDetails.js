@@ -89,6 +89,7 @@ export default function TicketDetails({ data, index }) {
 
   return (
     <Wrapper>
+      {/* {console.log(data)} */}
       <div className="ticketInfo" key={index}>
         <div className="ticketTitle">
           <h2>{data.title}</h2>
@@ -178,7 +179,8 @@ export default function TicketDetails({ data, index }) {
 
         <p className="description">{data.description}</p>
       </div >
-      <TicketNotes />
+      {/* { !!data.length && <TicketNotes data={data} />} */}
+      <TicketNotes data={data} />
       <div className="ticketComment">
         <textarea name="ticketComment" value={state.ticketComment} onChange={handleChange} cols="30" rows="10" />
         <button onClick={submitComment} type="submit">Submit</button>
