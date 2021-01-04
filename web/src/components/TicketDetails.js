@@ -27,7 +27,7 @@ export default function TicketDetails({ data, index }) {
     const fullName = `${firstName} ${lastName}`
     // verify if each input is different
     // if an input is different add object of data to an array
-    if (data.ticketType !== state.ticketType) {
+    if (data.ticketType !== state.ticketType && state.ticketType !== "") {
       arr.push({
         user: fullName,
         propertyChanged: "Ticket Type",
@@ -35,7 +35,7 @@ export default function TicketDetails({ data, index }) {
         newValue: state.ticketType
       })
     }
-    if (data.ticketStatus !== state.ticketStatus) {
+    if (data.ticketStatus !== state.ticketStatus && state.ticketStatus !== "") {
       arr.push({
         user: fullName,
         propertyChanged: "Ticket Status",
@@ -43,7 +43,7 @@ export default function TicketDetails({ data, index }) {
         newValue: state.ticketStatus
       })
     }
-    if (data.ticketPriority !== state.ticketPriority) {
+    if (data.ticketPriority !== state.ticketPriority && state.ticketPriority !== "") {
       arr.push({
         user: fullName,
         propertyChanged: "Ticket Priority",
@@ -51,14 +51,14 @@ export default function TicketDetails({ data, index }) {
         newValue: state.ticketPriority
       })
     }
-
     // iterate through array of objects and send each item to API end point
     for (let i = 0; i < arr.length; i++) {
-      await fetch("/api/v1/tickethistorys", {
-        method: "POST",
+      await fetch("/api/v1/tickethistory", {
+        method: "PUT",
         mode: "cors",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          id: data._id,
           user: arr[i].user,
           propertyChanged: arr[i].propertyChanged,
           oldValue: arr[i].oldValue,
@@ -75,11 +75,12 @@ export default function TicketDetails({ data, index }) {
     const firstName = sessionStorage.getItem("firstName")
     const lastName = sessionStorage.getItem("lastName")
     const fullName = `${firstName} ${lastName}`
-    await fetch("/api/v1/ticketcomments", {
-      method: "POST",
+    await fetch("/api/v1/ticketcomment", {
+      method: "PUT",
       mode: "cors",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        id: data._id,
         user: fullName,
         comment: state.ticketComment
       })
@@ -89,7 +90,6 @@ export default function TicketDetails({ data, index }) {
 
   return (
     <Wrapper>
-      {/* {console.log(data)} */}
       <div className="ticketInfo" key={index}>
         <div className="ticketTitle">
           <h2>{data.title}</h2>
@@ -179,7 +179,6 @@ export default function TicketDetails({ data, index }) {
 
         <p className="description">{data.description}</p>
       </div >
-      {/* { !!data.length && <TicketNotes data={data} />} */}
       <TicketNotes data={data} />
       <div className="ticketComment">
         <textarea name="ticketComment" value={state.ticketComment} onChange={handleChange} cols="30" rows="10" />
