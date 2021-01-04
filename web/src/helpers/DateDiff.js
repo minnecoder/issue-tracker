@@ -1,31 +1,28 @@
 export default function DateDiff(oldDate) {
     const date1 = new Date(oldDate).getTime();
     const date2 = new Date();
-    const results = Math.floor((date2 - date1) / (60000 * 60));
-    // 2 or more years
-    if (results > 17520) {
-        return `${Math.floor(results / 8759)} years ago`;
+
+    // return minutes if less than 60
+    let minutes = Math.floor((date2 - date1) / 60000)
+    if (minutes < 60) {
+        return `${minutes} minutes ago`
     }
-    // 1 year
-    if (results > 8759 && results < 17519) {
-        return `${Math.floor(results / 8759)} year ago`;
+    // return hours if less than 24
+    let hours = Math.floor((date2 - date1) / (60000 * 60));
+    if (hours < 24) {
+        return `${hours} hours ago`
     }
-    // 2 to 11 months
-    if (results > 1440) {
-        return `${Math.floor(results / 696)} months ago`;
+    // returndays if less than 30
+    let days = Math.floor((date2 - date1) / (60000 * 60 * 24))
+    if (days < 30) {
+        return `${days} days ago`
     }
-    // 1 month
-    if (results > 719 && results < 1439) {
-        return `${Math.floor(results / 696)} month ago`;
+    // return months if less than 12
+    let months = Math.floor((date2 - date1) / (60000 * 60 * 24 * 30))
+    if (months < 12) {
+        return `${months} months ago`
     }
-    // 2 to 30 days
-    if (results > 48) {
-        return `${Math.floor(results / 24)} days ago`;
-    }
-    // 1 day
-    if (results > 24 && results < 47) {
-        return `${Math.floor(results / 24)} day ago`;
-    }
-    // Less than a day
-    return results;
+    // return years
+    let years = Math.floor((date2 - date1) / (60000 * 60 * 24 * 30 * 12))
+    return `${years} years ago`
 }
