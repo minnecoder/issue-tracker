@@ -27,8 +27,8 @@ const ticketHistory = require("./routes/ticketHistory")
 app.use("/api/v1/projects", projects)
 app.use("/api/v1/tickets", tickets)
 app.use("/api/v1/users", users)
-app.use("/api/v1/ticketcomments", ticketComment)
-app.use("/api/v1/tickethistorys", ticketHistory)
+app.use("/api/v1/ticketcomment", ticketComment)
+app.use("/api/v1/tickethistory", ticketHistory)
 
 
 const PORT = process.env.PORT || 4000
