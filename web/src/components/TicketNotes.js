@@ -10,6 +10,12 @@ export default function TicketNotes(data) {
   for (let i = 0; i < data.data.ticketHistory.length; i++) {
     notes.push(data.data.ticketHistory[i])
   }
+  notes.sort((a, b) => {
+    let da = new Date(a.created)
+    let db = new Date(b.created)
+    return da - db
+  })
+
 
   return (
     <div>
@@ -26,7 +32,7 @@ export default function TicketNotes(data) {
                   <span>
 
                     {DateDiff(
-                      note.created,
+                      note.created
                     )}
                   </span>
                 </div>
