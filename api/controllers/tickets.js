@@ -27,7 +27,6 @@ exports.getTickets = async (req, res) => {
 // @route GET /tickets/:id
 // @access Public
 exports.getSingleTicket = async (req, res) => {
-    console.log(req.params)
     try {
         const ticket = await Ticket.findOne({ _id: req.params.id })
         await ticket.populate("ticketHistory").execPopulate()
@@ -127,7 +126,7 @@ exports.addTicketCommentToTicket = async (req, res) => {
             })
         }
 
-        ticket.ticketComment.push(req.body._id)
+        ticket.ticketComment.push(req.body)
         await ticket.save()
         return res.status(200).json({
             success: true,
@@ -152,7 +151,7 @@ exports.addTicketHistoryToTicket = async (req, res) => {
             })
         }
 
-        ticket.ticketHistory.push(req.body._id)
+        ticket.ticketHistory.push(req.body)
         await ticket.save()
         return res.status(200).json({
             success: true,
