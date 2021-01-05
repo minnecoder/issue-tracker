@@ -68,6 +68,7 @@ export default function TicketDetails({ data, index }) {
     }
     // after complettion set isEdited to false
     setIsEdited(false)
+    window.location.reload()
 
   }
 
@@ -86,6 +87,7 @@ export default function TicketDetails({ data, index }) {
       })
     })
     setState({ ticketComment: "" })
+    window.location.reload()
   }
 
   return (
