@@ -150,6 +150,15 @@ exports.addTicketHistoryToTicket = async (req, res) => {
                 error: "Ticket not found"
             })
         }
+        if (req.body.property === "ticketType") {
+            ticket.ticketType = req.body.newValue
+        }
+        if (req.body.property === "ticketPriority") {
+            ticket.ticketPriority = req.body.newValue
+        }
+        if (req.body.property === "ticketStatus") {
+            ticket.ticketStatus = req.body.newValue
+        }
 
         ticket.ticketHistory.push(req.body)
         await ticket.save()
