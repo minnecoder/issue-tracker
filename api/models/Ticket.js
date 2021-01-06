@@ -35,6 +35,7 @@ const TicketSchema = new mongoose.Schema({
     ticketHistory: [{
         user: String,
         propertyChanged: String,
+        property: String,
         oldValue: String,
         newValue: String,
         created: {
