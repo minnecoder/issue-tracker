@@ -94,12 +94,20 @@ export default function TicketDetails({ data, index }) {
     window.location.reload()
   }
 
+  function toggleEdited() {
+    if (isEdited) {
+      setIsEdited(false)
+    } else {
+      setIsEdited(true)
+    }
+  }
+
   return (
     <Wrapper>
       <div className="ticketInfo" key={index}>
         <div className="ticketTitle">
           <h2>{data.title}</h2>
-          <span onClick={() => setIsEdited(true)}>
+          <span onClick={toggleEdited}>
             <FaEdit style={{ marginTop: ".25rem" }} />
           Edit
           </span>
