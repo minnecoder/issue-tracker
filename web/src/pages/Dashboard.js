@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import Sidebar from '../components/Sidebar'
 import Header from '../components/Header';
 
 export default function Dashboard() {
   return (
     <div>
-      <Header />
       <Main>
+        <Header />
+        <Sidebar />
         <h1>Dashboard</h1>
       </Main>
     </div>
@@ -14,9 +16,12 @@ export default function Dashboard() {
 }
 
 const Main = styled.div`
-position: fixed;
-right: 0;
-height: calc(100vh - 4rem);
-width: calc(100% - 200px);
-background: lightgray;
+display: grid;
+grid-template-columns: 150px 1fr 1fr;
+grid-template-rows: 65px 1fr;
+grid-template-areas:
+"header header header"
+"sidebar dashboard dashboard";
+grid-gap: 0;
+background: white;
 `;

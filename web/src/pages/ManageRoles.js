@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
+import Sidebar from '../components/Sidebar';
 
 export default function ManageRoles() {
   return (
     <div>
-      <Header />
       <Main>
+        <Header />
+        <Sidebar />
         <h1>ManageRoles</h1>
       </Main>
     </div>
@@ -14,9 +16,12 @@ export default function ManageRoles() {
 }
 
 const Main = styled.div`
-position: fixed;
-right: 0;
-height: calc(100vh - 4rem);
-width: calc(100% - 200px);
-background: lightgray;
+display: grid;
+grid-template-columns: 150px 1fr 1fr;
+grid-template-rows: 65px 1fr;
+grid-template-areas:
+"header header header"
+"sidebar managerole managerole";
+grid-gap: 0;
+background: white;
 `;
