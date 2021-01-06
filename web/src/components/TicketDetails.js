@@ -31,6 +31,7 @@ export default function TicketDetails({ data, index }) {
       arr.push({
         user: fullName,
         propertyChanged: "Ticket Type",
+        property: "ticketType",
         oldValue: data.ticketType,
         newValue: state.ticketType
       })
@@ -39,6 +40,7 @@ export default function TicketDetails({ data, index }) {
       arr.push({
         user: fullName,
         propertyChanged: "Ticket Status",
+        property: "ticketStatus",
         oldValue: data.ticketStatus,
         newValue: state.ticketStatus
       })
@@ -47,6 +49,7 @@ export default function TicketDetails({ data, index }) {
       arr.push({
         user: fullName,
         propertyChanged: "Ticket Priority",
+        property: "ticketPriority",
         oldValue: data.ticketPriority,
         newValue: state.ticketPriority
       })
@@ -61,6 +64,7 @@ export default function TicketDetails({ data, index }) {
           id: data._id,
           user: arr[i].user,
           propertyChanged: arr[i].propertyChanged,
+          property: arr[i].property,
           oldValue: arr[i].oldValue,
           newValue: arr[i].newValue
         })
@@ -199,6 +203,7 @@ border-left: 1px solid #ccc;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: .5rem;
   h2{
     margin-left: .25rem;
   }
