@@ -2,14 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import Sidebar from '../components/Sidebar'
 import Header from '../components/Header';
+import Dashboard from "../components/Dashboard"
 
-export default function Dashboard() {
+export default function DashboardPage() {
   return (
     <div>
       <Main>
         <Header />
         <Sidebar />
-        <h1>Dashboard</h1>
+        <Dashboard />
       </Main>
     </div>
   );
