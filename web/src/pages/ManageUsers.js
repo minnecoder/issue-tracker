@@ -21,7 +21,7 @@ grid-template-columns: 150px 1fr 1fr;
 grid-template-rows: 65px 1fr;
 grid-template-areas:
 "header header header"
-"sidebar projectarea projectarea";
+"sidebar manageuser manageuser";
 grid-gap: 0;
 background: white;
 `;
