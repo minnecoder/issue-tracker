@@ -23,12 +23,14 @@ const tickets = require("./routes/tickets")
 const users = require("./routes/users")
 const ticketComment = require("./routes/ticketComment")
 const ticketHistory = require("./routes/ticketHistory")
+const dashboard = require("./routes/dashboard")
 
 app.use("/api/v1/projects", projects)
 app.use("/api/v1/tickets", tickets)
 app.use("/api/v1/users", users)
 app.use("/api/v1/ticketcomment", ticketComment)
 app.use("/api/v1/tickethistory", ticketHistory)
+app.use("/api/v1/dashboard", dashboard)
 
 
 const PORT = process.env.PORT || 4000
