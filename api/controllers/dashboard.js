@@ -6,13 +6,14 @@ const Ticket = require("../models/Ticket")
 // @access Public
 exports.getDashboardInfo = async (req, res) => {
     try {
+        const tickets = await Ticket.find()
         const projects = await Project.find().limit(5).sort({ tickets: -1 }).select({ title: 1, tickets: 1 })
+        const projectNum = projects.length
         // sort projects by number of tickets in project
         projects.sort((a, b) => {
             return b.tickets.length - a.tickets.length
         })
 
-        const tickets = await Ticket.find()
         // Total number of tickets
         const ticketNum = tickets.length
         // # of tickets priority - High
@@ -26,8 +27,9 @@ exports.getDashboardInfo = async (req, res) => {
         // # of tickets type bug
         const ticketsBug = tickets.filter(ticket => ticket.ticketType == "Bug")
         const data = {
+            projectNum: projectNum,
             projects: projects,
-            ticketNum: ticketNum.length,
+            ticketNum: ticketNum,
             ticketsHigh: ticketsHigh.length,
             ticketsHighest: ticketsHighest.length,
             ticketsBug: ticketsBug.length,
